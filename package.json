@@ -1,0 +1,26 @@
+{
+  "name": "statisfy",
+  "version": "1.0.0",
+  "description": "Get statistics from all of your favourite social media sites, games and more!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aspekts/statisfynpm.git"
+  },
+  "keywords": [
+    "stats",
+    "statistics",
+    "social",
+    "media",
+    "api"
+  ],
+  "author": "Aspekts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aspekts/statisfynpm/issues"
+  },
+  "homepage": "https://github.com/aspekts/statisfynpm#readme"
+}
