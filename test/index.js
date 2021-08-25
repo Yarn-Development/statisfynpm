@@ -1,13 +1,17 @@
-const statisfy = require("statisfy");
-const {npm} = require("statisfy")
-const {client_id,token} = require("../src/config.json")
-
-const ttv = new statisfy.Twitch({
-    client_id:client_id,
-    token:token
+import {npm,Twitch} from "statisfy";
+import config from '../src/config.json';
+const ttv = new Twitch({
+    client_id:config.client_id,
+    client_secret:config.secret
 });
-let ttvtest = async function() {
-const result = await ttv.getUserByName("ludwig")
+async function ttvtest() {
+const result = await ttv.getUserByName("Aspekts")
 console.log(result)
 }
 ttvtest()
+async function npmtest() {
+    const result = await npm("statisfy")
+    console.log(result)
+
+}
+npmtest()
