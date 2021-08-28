@@ -1,3 +1,5 @@
 import { npm } from "./npm.js";
-import { Twitch } from "./twitch.js";
-export { npm, Twitch };
+import { Twitch } from "./classes/twitch.js";
+import { Twitter } from "./classes/twitter.js";
+import { TRN } from "./classes/trn.js";
+export { npm, Twitch, Twitter, TRN };
