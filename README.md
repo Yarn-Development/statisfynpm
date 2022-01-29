@@ -25,7 +25,7 @@ $ npm install statisfy
     const { npm } = require("statisfy");
     async function getNPM(pkg) => {
     const result = await npm(pkg); 
-    console.log(pkg);
+    console.log(result);
     }
     getNPM("statisfy") // your package here
 ```
@@ -34,8 +34,8 @@ $ npm install statisfy
 ```js
     import { npm } from "statisfy";
      async function getNPM(pkg) => {
-    const pkg = await npm(pkg); 
-    console.log(pkg);
+    const result = await npm(pkg); 
+    console.log(result);
     }
     getNPM("statisfy") // your package here
 ```
@@ -169,6 +169,95 @@ twttest()
   },
   profile_image_url: 'https://pbs.twimg.com/profile_images/1380530524779859970/TfwVAbyX_normal.jpg',
   name: 'President Biden'
+}
+```
+&nbsp;
+## TRN (ALPHA)
+&nbsp;
+### Functions
+- Fortnite
+- Apex Legends
+&nbsp;
+### CommonJS Example Usage
+```js
+const { TRN } = require("statisfy");
+const trn = new TRN({
+  key:"ABC1234" // Tracker Network API Key
+});
+async function apextest() {
+    const result = await trn.ApexLegends({
+        username:'xAspekts',
+        platform: "xbl"
+    });
+    console.log(result)
+}
+apextest() 
+async function fntest(){
+    const result = await trn.Fortnite({
+        username:'Ninja',
+        platform:'kbm'
+    })
+    console.log(result)
+}
+fntest()
+```
+&nbsp;
+### Results - Apex Legends
+&nbsp;
+```js
+{
+  platformInfo: {
+    platformSlug: 'xbl',
+    platformUserId: 'xAspekts',
+    platformUserHandle: 'xAspekts',
+    platformUserIdentifier: 'xAspekts',
+    avatarUrl: 'https://images-eds-ssl.xboxlive.com/image?url=wHwbXKif8cus8csoZ03RW8ke8ralOdP9BGd4wzwl0MJ9z6QzuGwZjtvbE7sSsMVW3GtqdB8tr2M604Js_A5hRb4ej1NAlLgfikoRUkt8XGoBbs9TId_M9.NIOpyumXn9la5RYDGV9y_fYQlPsMeH74.dFI.YBGHTHVD6_tFiUCo-',
+    additionalParameters: null
+  },
+  userInfo: {
+    userId: 4668724,
+    isPremium: false,
+    isVerified: false,
+    isInfluencer: false,
+    isPartner: false,
+    countryCode: 'GB',
+    customAvatarUrl: null,
+    customHeroUrl: null,
+    socialAccounts: [],
+    pageviews: 6,
+    isSuspicious: null
+  },
+  metadata: {
+    currentSeason: 2,
+    activeLegend: 'legend_13',
+    activeLegendName: 'Loba',
+    activeLegendStats: [ 'Season 8 Wins', 'Kills' ]
+  },
+  segments: [
+    {
+      type: 'overview',
+      attributes: {},
+      metadata: [Object],
+      expiryDate: '2022-01-29T14:29:21.2766514+00:00',
+      stats: [Object]
+    },
+    {
+      type: 'legend',
+      attributes: [Object],
+      metadata: [Object],
+      expiryDate: '2022-01-29T14:29:21.2766514+00:00',
+      stats: [Object]
+    },
+    {
+      type: 'legend',
+      attributes: [Object],
+      metadata: [Object],
+      expiryDate: '2022-01-29T14:29:21.2766514+00:00',
+      stats: [Object]
+    }
+  ],
+  availableSegments: [ { type: 'legend', attributes: {}, metadata: {} } ],
+  expiryDate: '2022-01-29T14:29:21.2766514+00:00'
 }
 ```
 ## Problems or issues?

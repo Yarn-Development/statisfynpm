@@ -34,3 +34,11 @@ async function apextest() {
     console.log(result)
 }
 apextest() 
+async function fntest(){
+    const result = await trn.Fortnite({
+        username:'bhakaani',
+        platform:'kbm'
+    })
+    console.log(result)
+}
+fntest()
