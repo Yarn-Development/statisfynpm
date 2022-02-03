@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-import chalk from "chalk";
 
 export const Twitter = class Twitter {
     constructor({token}) {
@@ -17,7 +15,7 @@ export const Twitter = class Twitter {
             return body.data;
         }
         else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            throw new Error(`[Statisfy] ${body.status} ERROR: ${body.error}` + ` - ${body.message}`)
         }
     }
   async UserLookupByName(user) {

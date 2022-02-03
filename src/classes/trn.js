@@ -1,5 +1,4 @@
-import fetch from "node-fetch";
-import chalk from "chalk";
+
 export const TRN  = class TRN {
     constructor({key}) {
         this.key = key
@@ -16,13 +15,13 @@ export const TRN  = class TRN {
             return body;
         }
         else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            throw new Error(`[Statisfy] ${body.status} ERROR: ${body.error}` + ` - ${body.message}`)
         }
     }
     async ApexLegends({username,platform}) {
         const platforms = ["xbl","psn","origin"];
         if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
+            throw new TypeError(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`)
         }
        let info = await this.req(`https://public-api.tracker.gg/v2/apex/standard/profile/${platform}/${username}`);
        return info.data;
@@ -30,7 +29,7 @@ export const TRN  = class TRN {
     async Fortnite({username,platform}) {
         const platforms = ["kbm","gamepad","touch"];
         if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
+            throw new TypeError(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`)
         }
         let info = await this.req(`https://api.fortnitetracker.com/v1/profile/${platform}/${username}`);
         return info;

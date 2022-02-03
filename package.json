@@ -24,17 +24,6 @@
   "bugs": {
     "url": "https://github.com/aspekts/statisfynpm/issues"
   },
-  "homepage": "https://github.com/aspekts/statisfynpm#readme",
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "chalk": "^4.1.2",
-    "cheerio": "^1.0.0-rc.10",
-    "node-fetch": "^2.6.1",
-    "regenerator-runtime": "^0.10.5",
-    "statisfy": "^1.1.1"
-  },
-  "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "core-js": "^3.16.3"
-  }
+  "homepage": "https://github.com/aspekts/statisfynpm#readme"
+
 }
