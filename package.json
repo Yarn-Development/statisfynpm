@@ -1,8 +1,8 @@
 {
-  "name": "statisfy",
-  "version": "1.1.3-alpha.1",
+  "name": "statisfy-browser",
+  "version": "1.0.1",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
-  "main": "./dist/index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "node --experimental-json-modules ./test/index.js",
     "build": "babel src --out-dir dist",
