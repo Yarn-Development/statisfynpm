@@ -12,13 +12,112 @@ $ npm install statisfy
 ```
 &nbsp;
 # 📖 Documentation
-&nbsp;
+## Spotify
+### How to get Required Parameters:
+Head over to https://developers.spotify.com/dashboard, login with your Spotify account and create an app.
+
+Within this app you should find a Client ID and a Client Secret. If you would only like the getPlaylist function, this is sufficient. 
+
+However, if you would like to use the top function, and any other function that requires authentication via browser, navigate to the "Edit Settings" button, and add http://localhost:8888 as a redirect uri. 
+
+For remote servers and people who have port 8888 in use, you can use the Oauth function yourselves, with your specified uri.
+### Functions
+- top
+- getPlaylist
+- oauth (If you would prefer to use your access token yourself)
+- More functions to be released in near future
+### CommonJS Usage
+```js
+const { Spotify } = require("statisfy");
+const spotify = new Spotify({
+  client_id:"xxxxxx" // your client id here
+  client_secret:"xxxxxxx" // your client secret here
+});
+async function spot(){
+  console.log(await spotify.getPlaylist("57AoCP0MBsk5kjtTRCprKP")); // id of playlist - open.spotify.com/playlist/x
+  console.log(await spotify.top({
+    time:"medium_term", // short_term (4 weeks), medium_term (6 months), or long_term (Lifetime)
+    type:"artists", // artists or tracks
+    limit:"1"// amount of artists to show 
+  }));
+};
+spot()
+```
+### Example Response
+```js
+// Top
+[
+  {
+    external_urls: {
+      spotify: 'https://open.spotify.com/artist/2zAshenjqDlcL4pudfySBY'
+    },
+    followers: { href: null, total: 38297 },
+    genres: [ 'alternative r&b', 'chill r&b', 'indie r&b' ],
+    href: 'https://api.spotify.com/v1/artists/2zAshenjqDlcL4pudfySBY',
+    id: '2zAshenjqDlcL4pudfySBY',
+    images: [ [Object], [Object], [Object] ],
+    name: 'emawk',
+    popularity: 53,
+    type: 'artist',
+    uri: 'spotify:artist:2zAshenjqDlcL4pudfySBY'
+  }
+]
+// Playlist
+{
+  collaborative: false,
+  description: '',
+  external_urls: {
+    spotify: 'https://open.spotify.com/playlist/4XpJdPT0WpzN5qx0oEjX2u'
+  },
+  followers: { href: null, total: 0 },
+  href: 'https://api.spotify.com/v1/playlists/4XpJdPT0WpzN5qx0oEjX2u',
+  id: '4XpJdPT0WpzN5qx0oEjX2u',
+  images: [
+    {
+      height: 640,
+      url: 'https://mosaic.scdn.co/640/ab67616d0000b27303f6fbd3817030884ba916d6ab67616d0000b2734c79d5ec52a6d0302f3add25ab67616d0000b2735bafd20f6f6572adaa76d187ab67616d0000b273b85eeb572ae2073ab4cb8db6',
+      width: 640
+    },
+    {
+      height: 300,
+      url: 'https://mosaic.scdn.co/300/ab67616d0000b27303f6fbd3817030884ba916d6ab67616d0000b2734c79d5ec52a6d0302f3add25ab67616d0000b2735bafd20f6f6572adaa76d187ab67616d0000b273b85eeb572ae2073ab4cb8db6',
+      width: 300
+    },
+    {
+      height: 60,
+      url: 'https://mosaic.scdn.co/60/ab67616d0000b27303f6fbd3817030884ba916d6ab67616d0000b2734c79d5ec52a6d0302f3add25ab67616d0000b2735bafd20f6f6572adaa76d187ab67616d0000b273b85eeb572ae2073ab4cb8db6',
+      width: 60
+    }
+  ],
+  name: 'science',
+  owner: {
+    display_name: 'marcus',
+    external_urls: { spotify: 'https://open.spotify.com/user/singerloud' },
+    href: 'https://api.spotify.com/v1/users/singerloud',
+    id: 'singerloud',
+    type: 'user',
+    uri: 'spotify:user:singerloud'
+  },
+  primary_color: null,
+  public: true,
+  snapshot_id: 'OSw3N2JiNGIxYjNjNDBiZjhiYzc1MDE0YjEwNGE1N2JlMGI2NTc2MzVj',
+  tracks: {
+    href: 'https://api.spotify.com/v1/playlists/4XpJdPT0WpzN5qx0oEjX2u/tracks?offset=0&limit=100',
+    items: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+    limit: 100,
+    next: null,
+    offset: 0,
+    previous: null,
+    total: 6
+  },
+  type: 'playlist',
+  uri: 'spotify:playlist:4XpJdPT0WpzN5qx0oEjX2u'
+}
+```
 ## NPM
 ### Functions
 
 - npm
-
-&nbsp;
 
 ### CommonJS Usage
 ```js
@@ -45,7 +144,7 @@ $ npm install statisfy
 {
   name: 'statisfy',
   scope: 'unscoped',
-  version: '1.0.2',
+  version: '1.1.5',
   description: 'Get statistics from all of your favourite social media sites, games and more!',
   keywords: [ 'stats', 'statistics', 'social', 'media', 'api' ],
   date: '2021-08-24T20:11:48.377Z',
@@ -63,7 +162,7 @@ $ npm install statisfy
 &nbsp;
 &nbsp;
 ## Twitch
-&nbsp;
+
 ### Getting Client ID and Client Secret
 Head to https://dev.twitch.tv/console and login with your twitch acccount. 
 
@@ -97,21 +196,6 @@ async function channelInfo() {
 channelInfo()
 ```
 &nbsp;
-### ES6 Example Usage
-&nbsp;
-```js
-import { Twitch } from "statisfy";
-const ttv = new Twitch({
-    client_id : "12345abcde", // your client id here
-    client_secret: "67890fghij" // your client secret here
-});
-async function channelInfo() {
-    const info = await ttv.getUserByName("Ludwig"); // your channel here
-    console.log(info)
-}
-channelInfo()
-```
-&nbsp;
 ### Result
 ```js
 {
@@ -129,13 +213,10 @@ channelInfo()
 ```
 &nbsp;
 ## Twitter (ALPHA)
-&nbsp;
 
 ### Functions
 - UserLookupByName
-
 ### CommonJS Example Usage
-
 ```js
 const { Twitter } = require("statisfy");
 const twt = new Twitter({
@@ -260,6 +341,7 @@ fntest()
   expiryDate: '2022-01-29T14:29:21.2766514+00:00'
 }
 ```
+
 ## Problems or issues?
 
 If you encounter any problems, bugs or other issues with the package, please create an [issue in the GitHub repo](https://github.com/aspekts/statisfynpm/issues). 
