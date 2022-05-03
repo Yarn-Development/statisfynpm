@@ -1,4 +1,4 @@
-[<p align=center><img width="200" src="https://i.imgur.com/AexZWB6.png"></p>](https://i.imgur.com/AexZWB6.png)
+[<p align=center><img width="700" src="https://i.imgur.com/AexZWB6.png"></p>](https://i.imgur.com/AexZWB6.png)
 ![npm](https://img.shields.io/npm/v/statisfy?label=statisfy&logo=npm) 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/statisfy?logo=npm)
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/statisfy?logo=npm)
@@ -11,7 +11,7 @@
 $ npm install statisfy
 ```
 &nbsp;
-# 📖 Documentation
+# 📖 Classes & Functions
 ## Spotify
 ### How to get Required Parameters:
 Head over to https://developers.spotify.com/dashboard, login with your Spotify account and create an app.
