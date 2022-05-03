@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Statisfy Source: trn.js</title>
+	<title>Statisfy Source: classes/twitch.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,6 +38,13 @@
 				</ul>
 			</li>
 			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="global.html#npm">npm</a></li>
+				</ul>
+			</li>
+			
 		</ul>
         
             <div class="col-sm-3 col-md-3">
@@ -66,7 +73,7 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: trn.js</h1>
+		<h1 class="page-title">Source: classes/twitch.js</h1>
     
 <section>
     <article>
@@ -75,58 +82,117 @@
 import chalk from "chalk";
 /**
  * @class
- * @classdesc Handler for game statistics supplied via the Tracker Network API.
- * @param {String} key Tracker Network Key to authenticate API Requests 
+ * @classdesc Twitch Class, which handles all relevant statistical endpoints from the Twitch API
+ * @param {String} client_id Twitch Client ID from Developer Portal
+ * @param {String} client_secret Twitch Client Secret from Developer Portal 
  */
-export const TRN  = class TRN {
-    constructor({key}) {
-        this.key = key
-    } 
-    /**
-     * It takes a URL, makes a GET request to it, and returns the body of the response
-     * @param url - The URL to send the request to.
-     * @returns The response from the API.
-     */
-    async req(url) {
-        let res = await fetch(url, {
-            method:'GET',
-            headers: {
-                    "TRN-Api-Key": this.key
-            }
+export const Twitch = class Twitch {
+    constructor ({client_id,client_secret}){
+       this.client = client_id;
+       this.secret = client_secret;
+   }
+   /**
+    * It gets a token from the Twitch API.
+    * @async
+    * @returns The access token.
+    */
+   async getToken() {
+        let info = await fetch(`https://id.twitch.tv/oauth2/token?client_id=${this.client}&amp;client_secret=${this.secret}&amp;grant_type=client_credentials`,{
+                method:'POST'
         });
-        let body = await res.json();
-        if(res.ok){
-            return body;
+        let body = await info.json();
+        if (info.ok) {
+            if(body.access_token == null) {
+                throw new Error(chalk.bold.red("[Statisfy] Token generation error."))
+            }
+            else  {
+            return body.access_token;
+            }
         }
         else {
             throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
-    }
-   /**
-    * It takes in a username and platform and returns the data from the API.
-    * @returns The data object from the response.
-    */
-    async ApexLegends({username,platform}) {
-        const platforms = ["xbl","psn","origin"];
-        if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
-        }
-       let info = await this.req(`https://public-api.tracker.gg/v2/apex/standard/profile/${platform}/${username}`);
-       return info.data;
-    }
-    /**
-     * It takes in a username and platform, and returns the stats of the user.
-     * @returns the info object from the response.
-     */
-    async Fortnite({username,platform}) {
-        const platforms = ["kbm","gamepad","touch"];
-        if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
-        }
-        let info = await this.req(`https://api.fortnitetracker.com/v1/profile/${platform}/${username}`);
-        return info;
        
     }
+   /**
+    * It takes a URL, gets an access token, and then makes a GET request to the URL with the access
+    * token.
+    * @async
+    * @param {String} url - The URL of the API endpoint you want to access.
+    * @returns The data from the API call.
+    */
+   async req(url) {
+       let token = await this.getToken();
+       if (token == null) {
+           throw new Error(`${chalk.bold.red("[Statisfy] ERROR:")} Access Token generation failed. Please try again.`)
+       }
+       if(this.client == null) {
+           throw new Error(chalk.bold.red("[Statisfy] ERROR: Twitch Client ID not provided."))
+       }
+       else if (this.secret == null){
+           throw new Error(chalk.bold.red("[Statisfy] ERROR: Twitch Client Secret not provided."))
+       }
+       let res = await fetch(url,{
+           method:'GET',
+           headers:{
+           "Authorization": `Bearer ${token}`,
+           "Client-Id": `${this.client}`         
+           }
+       });
+       let body = await res.json();
+       if(res.ok){
+           return body.data;
+       }
+       else {
+           throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+       }
+   }
+
+    
+       /**
+        * It gets the user's information by their username
+        * @async
+        * @param {String} username - The username of the user you want to get the info of.
+        * @returns The user's information.
+        */
+       async getUserByName(username) {
+        if(username == null) {
+            throw new Error(chalk.bold.red("[Statisfy] ERROR: Username not provided."))
+        }
+           let info = await this.req(`https://api.twitch.tv/helix/users?login=${username.toLowerCase()}`);
+           return info[0];
+        }
+/**
+ * It gets a user's information by their ID
+ * @async
+ * @param {String} id - The user's ID.
+ * @returns An object with the user's information.
+ */
+   async getUserByID(id) {
+       let info = await this.req(`https://api.twitch.tv/helix/users?id=${id}`);
+       return info[0];
+   }
+/**
+ * It gets the channel info of a user
+ * @async
+ * @param {String} id - The channel ID of the channel you want to get the info of.
+ * @returns An object with the channel info.
+ */
+   async getChannelInfo(id) {
+       let info = await this.req(`https://api.twitch.tv/helix/channels?broadcaster_id=${id}`);
+       return info[0];
+   }
+
+/**
+ * It searches for a channel by username and returns the first result.
+ * @async
+ * @param {String} username - The username of the channel you want to get the information of.
+ * @returns An object with the channel information.
+ */
+   async searchChannels(username) {
+       let info = await this.req(`https://api.twitch.tv/helix/search/channels?query=${username}`);
+       return info[0];
+   } 
 }</pre>
     </article>
 </section>

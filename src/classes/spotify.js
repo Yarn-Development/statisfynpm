@@ -2,6 +2,12 @@
 import fetch from "node-fetch";
 import chalk from "chalk";
 import http from "http";
+/**
+ * @class
+ * @classdec Spotify Class, which handles all relevant statistical endpoints from the Spotify API
+ * @param {String} client_id Spotify client ID
+ * @param {String} client_secret Spotify client secret 
+ */
 export const Spotify = class Spotify{
   constructor({client_id,client_secret}){
     this.id = client_id;
@@ -11,7 +17,7 @@ export const Spotify = class Spotify{
   /**
    * It takes the client id and secret, encodes them into base64, and sends them to the Spotify API to
    * get an access token.
-   * </code>
+   * @async
    * @returns The access token is being returned.
    */
   async access_token(){
@@ -34,11 +40,18 @@ export const Spotify = class Spotify{
             throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
   }
+/**
+ * @async
+ * @param {String} scopes Scopes required to authenticate
+ * @param {String} uri Redirect URL to callback following authentication 
+ * @returns Access Token
+ */
   async oauth({scopes,uri}) {
     /**
      * It creates a server on the given port, and returns a promise that resolves to the url that the
      * server receives a request on.
-     * @param port - The port number to listen on.
+     * @async
+     * @param {Integer} port - The port number to listen on.
      * @returns A promise that resolves to a string.
      */
     const getLocalhostUrl = async function (port){
@@ -109,7 +122,8 @@ export const Spotify = class Spotify{
   /**
    * It takes a url, gets an access token, and then makes a request to the url with the access token.
    * You can use <code>async/await</code> to make it easier to read.
-   * @param url - The url you want to request.
+   * @async
+   * @param {String} url - The url you want to request.
    * @returns The response body.
    */
   async req(url){
@@ -129,6 +143,10 @@ export const Spotify = class Spotify{
   }
 /**
  * It gets the top tracks/artists from the user's account
+ * @async
+ * @param {String} time Period of time to fetch top stats for: short_term(4 weeks), medium_term(6 months) or long_term(lifetime)
+ * @param {String} type Type of Data fetched: Either artists or tracks
+ * @param {Integer} limit Amount of top artists/tracks to be fetched
  * @returns An array of objects.
  */
   async top({time,type,limit}){
@@ -148,7 +166,8 @@ export const Spotify = class Spotify{
   }
  /**
   * It takes a playlist ID and returns the playlist's data.
-  * @param playlist - The Spotify ID of the playlist you want to get.
+  * @async
+  * @param {String} playlist - The Spotify ID of the playlist you want to get.
   * @returns The data from the request.
   */
   async getPlaylist(playlist){

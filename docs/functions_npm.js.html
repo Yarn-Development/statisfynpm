@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Statisfy Source: trn.js</title>
+	<title>Statisfy Source: functions/npm.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,6 +38,13 @@
 				</ul>
 			</li>
 			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="global.html#npm">npm</a></li>
+				</ul>
+			</li>
+			
 		</ul>
         
             <div class="col-sm-3 col-md-3">
@@ -66,68 +73,34 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: trn.js</h1>
+		<h1 class="page-title">Source: functions/npm.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">import fetch from "node-fetch";
 import chalk from "chalk";
-/**
- * @class
- * @classdesc Handler for game statistics supplied via the Tracker Network API.
- * @param {String} key Tracker Network Key to authenticate API Requests 
- */
-export const TRN  = class TRN {
-    constructor({key}) {
-        this.key = key
-    } 
-    /**
-     * It takes a URL, makes a GET request to it, and returns the body of the response
-     * @param url - The URL to send the request to.
-     * @returns The response from the API.
-     */
-    async req(url) {
-        let res = await fetch(url, {
-            method:'GET',
-            headers: {
-                    "TRN-Api-Key": this.key
-            }
-        });
-        let body = await res.json();
-        if(res.ok){
-            return body;
-        }
-        else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
-        }
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+/** 
+ * @function
+ * @async 
+ * @param {String} pkg Package to return data from
+ * @returns Statistics &amp; Info of package
+*/
+export const npm = async function npm(pkg) {
+    try {
+    if(!pkg) return console.log(chalk.bold.red(`[Statisfy] ERROR: Package not provided.`));
+    const response = await fetch('https://api.npms.io/v2/search?q=' + pkg).then(
+        (res) => res.json(),
+    );
+    if(!response) return console.log(`[Statisfy] ERROR: Failed to find package from npm. `)
+    return response.results[0].package;
+}
+catch(err) {
+    console.log(`[Statisfy] ERROR: ${err}`)
     }
-   /**
-    * It takes in a username and platform and returns the data from the API.
-    * @returns The data object from the response.
-    */
-    async ApexLegends({username,platform}) {
-        const platforms = ["xbl","psn","origin"];
-        if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
-        }
-       let info = await this.req(`https://public-api.tracker.gg/v2/apex/standard/profile/${platform}/${username}`);
-       return info.data;
-    }
-    /**
-     * It takes in a username and platform, and returns the stats of the user.
-     * @returns the info object from the response.
-     */
-    async Fortnite({username,platform}) {
-        const platforms = ["kbm","gamepad","touch"];
-        if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
-        }
-        let info = await this.req(`https://api.fortnitetracker.com/v1/profile/${platform}/${username}`);
-        return info;
-       
-    }
-}</pre>
+  };</pre>
     </article>
 </section>
 

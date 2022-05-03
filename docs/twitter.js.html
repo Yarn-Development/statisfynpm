@@ -11,7 +11,7 @@
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.lux.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.cyborg.css">
 
 </head>
 
@@ -30,6 +30,13 @@
 	</div>
 	<div class="navbar-collapse collapse" id="topNavigation">
 		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="Spotify.html">Spotify</a></li><li><a href="TRN.html">TRN</a></li><li><a href="Twitch.html">Twitch</a></li><li><a href="Twitter.html">Twitter</a></li>
+				</ul>
+			</li>
 			
 		</ul>
         
@@ -66,7 +73,11 @@
         <pre
             class="sunlight-highlight-javascript linenums">import fetch from "node-fetch";
 import chalk from "chalk";
-
+/**
+ * @class
+ * @classdesc Twitter Class, which handles all relevant statistical endpoints from the Twitter API
+ * @param {String} token Twittter Developer Token 
+ */
 export const Twitter = class Twitter {
     constructor({token}) {
         this.token = token;

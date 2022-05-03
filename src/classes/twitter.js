@@ -1,6 +1,10 @@
 import fetch from "node-fetch";
 import chalk from "chalk";
-
+/**
+ * @class
+ * @classdesc Twitter Class, which handles all relevant statistical endpoints from the Twitter API
+ * @param {String} token Twittter Developer Token 
+ */
 export const Twitter = class Twitter {
     constructor({token}) {
         this.token = token;
@@ -8,7 +12,8 @@ export const Twitter = class Twitter {
    /**
     * It makes a request to the url, and if the response is ok, it returns the body data, otherwise it
     * throws an error.
-    * @param url - The url you want to send the request to.
+    * @async
+    * @param {String} url - The url you want to send the request to.
     * @returns The data from the API.
     */
     async req(url) {
@@ -29,7 +34,8 @@ export const Twitter = class Twitter {
 /**
  * It takes a Twitter username as a parameter, and returns a JSON object containing the user's
  * information.
- * @param user - The username of the user you want to look up.
+ * @async
+ * @param {String} user - The username of the user you want to look up.
  * @returns The user's information.
  */
   async UserLookupByName(user) {

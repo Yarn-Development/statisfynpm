@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Statisfy Source: trn.js</title>
+	<title>Statisfy Global</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,6 +38,13 @@
 				</ul>
 			</li>
 			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="global.html#npm">npm</a></li>
+				</ul>
+			</li>
+			
 		</ul>
         
             <div class="col-sm-3 col-md-3">
@@ -61,76 +68,242 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: trn.js</h1>
-    
+	<h1 class="page-title">Global</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">import fetch from "node-fetch";
-import chalk from "chalk";
-/**
- * @class
- * @classdesc Handler for game statistics supplied via the Tracker Network API.
- * @param {String} key Tracker Network Key to authenticate API Requests 
- */
-export const TRN  = class TRN {
-    constructor({key}) {
-        this.key = key
-    } 
-    /**
-     * It takes a URL, makes a GET request to it, and returns the body of the response
-     * @param url - The URL to send the request to.
-     * @returns The response from the API.
-     */
-    async req(url) {
-        let res = await fetch(url, {
-            method:'GET',
-            headers: {
-                    "TRN-Api-Key": this.key
-            }
-        });
-        let body = await res.json();
-        if(res.ok){
-            return body;
-        }
-        else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
-        }
-    }
-   /**
-    * It takes in a username and platform and returns the data from the API.
-    * @returns The data object from the response.
-    */
-    async ApexLegends({username,platform}) {
-        const platforms = ["xbl","psn","origin"];
-        if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
-        }
-       let info = await this.req(`https://public-api.tracker.gg/v2/apex/standard/profile/${platform}/${username}`);
-       return info.data;
-    }
-    /**
-     * It takes in a username and platform, and returns the stats of the user.
-     * @returns the info object from the response.
-     */
-    async Fortnite({username,platform}) {
-        const platforms = ["kbm","gamepad","touch"];
-        if(!platforms.includes(platform)){ 
-            throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`))
-        }
-        let info = await this.req(`https://api.fortnitetracker.com/v1/profile/${platform}/${username}`);
-        return info;
-       
-    }
-}</pre>
-    </article>
-</section>
 
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="npm"><span class="type-signature">&lt;async> </span>npm(pkg)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pkg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Package to return data from</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="functions_npm.js.html">functions/npm.js</a>,
+				 <a href="functions_npm.js.html#sunlight-1-line-11">line 11</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Statistics &amp; Info of package</p>
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -140,6 +313,10 @@ export const TRN  = class TRN {
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Statisfy Source: trn.js</title>
+	<title>Statisfy Source: classes/trn.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,6 +38,13 @@
 				</ul>
 			</li>
 			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu inline">
+					<li><a href="global.html#npm">npm</a></li>
+				</ul>
+			</li>
+			
 		</ul>
         
             <div class="col-sm-3 col-md-3">
@@ -66,7 +73,7 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: trn.js</h1>
+		<h1 class="page-title">Source: classes/trn.js</h1>
     
 <section>
     <article>
@@ -84,6 +91,7 @@ export const TRN  = class TRN {
     } 
     /**
      * It takes a URL, makes a GET request to it, and returns the body of the response
+     * @async
      * @param url - The URL to send the request to.
      * @returns The response from the API.
      */
@@ -104,6 +112,9 @@ export const TRN  = class TRN {
     }
    /**
     * It takes in a username and platform and returns the data from the API.
+    * @async
+    * @param {String} username The username of the player
+    * @param {String} platform The platform of the player retrieving stats from
     * @returns The data object from the response.
     */
     async ApexLegends({username,platform}) {
@@ -116,6 +127,9 @@ export const TRN  = class TRN {
     }
     /**
      * It takes in a username and platform, and returns the stats of the user.
+     * @async
+     * @param {String} username The username of the player
+    *  @param {String} platform The platform of the player retrieving stats from
      * @returns the info object from the response.
      */
     async Fortnite({username,platform}) {

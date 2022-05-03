@@ -1,11 +1,17 @@
 import fetch from "node-fetch";
 import chalk from "chalk";
+/**
+ * @class
+ * @classdesc Handler for game statistics supplied via the Tracker Network API.
+ * @param {String} key Tracker Network Key to authenticate API Requests 
+ */
 export const TRN  = class TRN {
     constructor({key}) {
         this.key = key
     } 
     /**
      * It takes a URL, makes a GET request to it, and returns the body of the response
+     * @async
      * @param url - The URL to send the request to.
      * @returns The response from the API.
      */
@@ -26,6 +32,9 @@ export const TRN  = class TRN {
     }
    /**
     * It takes in a username and platform and returns the data from the API.
+    * @async
+    * @param {String} username The username of the player
+    * @param {String} platform The platform of the player retrieving stats from
     * @returns The data object from the response.
     */
     async ApexLegends({username,platform}) {
@@ -38,6 +47,9 @@ export const TRN  = class TRN {
     }
     /**
      * It takes in a username and platform, and returns the stats of the user.
+     * @async
+     * @param {String} username The username of the player
+    *  @param {String} platform The platform of the player retrieving stats from
      * @returns the info object from the response.
      */
     async Fortnite({username,platform}) {

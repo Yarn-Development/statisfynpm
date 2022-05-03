@@ -1,5 +1,11 @@
 import fetch from "node-fetch";
 import chalk from "chalk";
+/**
+ * @class
+ * @classdesc Twitch Class, which handles all relevant statistical endpoints from the Twitch API
+ * @param {String} client_id Twitch Client ID from Developer Portal
+ * @param {String} client_secret Twitch Client Secret from Developer Portal 
+ */
 export const Twitch = class Twitch {
     constructor ({client_id,client_secret}){
        this.client = client_id;
@@ -7,6 +13,7 @@ export const Twitch = class Twitch {
    }
    /**
     * It gets a token from the Twitch API.
+    * @async
     * @returns The access token.
     */
    async getToken() {
@@ -30,7 +37,8 @@ export const Twitch = class Twitch {
    /**
     * It takes a URL, gets an access token, and then makes a GET request to the URL with the access
     * token.
-    * @param url - The URL of the API endpoint you want to access.
+    * @async
+    * @param {String} url - The URL of the API endpoint you want to access.
     * @returns The data from the API call.
     */
    async req(url) {
@@ -63,7 +71,8 @@ export const Twitch = class Twitch {
     
        /**
         * It gets the user's information by their username
-        * @param username - The username of the user you want to get the info of.
+        * @async
+        * @param {String} username - The username of the user you want to get the info of.
         * @returns The user's information.
         */
        async getUserByName(username) {
@@ -75,7 +84,8 @@ export const Twitch = class Twitch {
         }
 /**
  * It gets a user's information by their ID
- * @param id - The user's ID.
+ * @async
+ * @param {String} id - The user's ID.
  * @returns An object with the user's information.
  */
    async getUserByID(id) {
@@ -84,7 +94,8 @@ export const Twitch = class Twitch {
    }
 /**
  * It gets the channel info of a user
- * @param id - The channel ID of the channel you want to get the info of.
+ * @async
+ * @param {String} id - The channel ID of the channel you want to get the info of.
  * @returns An object with the channel info.
  */
    async getChannelInfo(id) {
@@ -94,7 +105,8 @@ export const Twitch = class Twitch {
 
 /**
  * It searches for a channel by username and returns the first result.
- * @param username - The username of the channel you want to get the information of.
+ * @async
+ * @param {String} username - The username of the channel you want to get the information of.
  * @returns An object with the channel information.
  */
    async searchChannels(username) {

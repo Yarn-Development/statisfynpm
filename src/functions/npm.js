@@ -2,6 +2,12 @@ import fetch from "node-fetch";
 import chalk from "chalk";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+/** 
+ * @function
+ * @async 
+ * @param {String} pkg Package to return data from
+ * @returns Statistics & Info of package
+*/
 export const npm = async function npm(pkg) {
     try {
     if(!pkg) return console.log(chalk.bold.red(`[Statisfy] ERROR: Package not provided.`));
