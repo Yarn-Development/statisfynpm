@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Statisfy Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.lux.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html"><img class="branding-logo" src="https://cdn.discordapp.com/attachments/695957739255627777/936688582905704448/statisfy.png"
+		alt="logo"/>Statisfy</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><p><img src="https://i.imgur.com/AexZWB6.png" alt="logo"><br>
+<img src="https://img.shields.io/npm/v/statisfy?label=statisfy&amp;logo=npm" alt="npm"><br>
+<img src="https://img.shields.io/bundlephobia/min/statisfy?logo=npm" alt="npm bundle size"><br>
+<img src="https://img.shields.io/npms-io/quality-score/statisfy?logo=npm" alt="npms.io (quality)"><br>
+<img src="https://img.shields.io/npms-io/maintenance-score/statisfy?logo=npm" alt="npms.io (quality)"><br>
+ </p>
+<h3>Get statistics from all of your favourite social media sites, games and more!</h3>
+<p> </p>
+<h2>Install</h2>
+<pre class="prettyprint source"><code>$ npm install statisfy
+</code></pre>
+<p> </p>
+<h1>📖 Documentation</h1>
+<h2>Spotify</h2>
+<h3>How to get Required Parameters:</h3>
+<p>Head over to https://developers.spotify.com/dashboard, login with your Spotify account and create an app.</p>
+<p>Within this app you should find a Client ID and a Client Secret. If you would only like the getPlaylist function, this is sufficient.</p>
+<p>However, if you would like to use the top function, and any other function that requires authentication via browser, navigate to the &quot;Edit Settings&quot; button, and add http://localhost:8888 as a redirect uri.</p>
+<p>For remote servers and people who have port 8888 in use, you can use the Oauth function yourselves, with your specified uri.</p>
+<h3>Functions</h3>
+<ul>
+<li>top</li>
+<li>getPlaylist</li>
+<li>oauth (If you would prefer to use your access token yourself)</li>
+<li>More functions to be released in near future</li>
+</ul>
+<h3>CommonJS Usage</h3>
+<pre class="prettyprint source lang-js"><code>const { Spotify } = require(&quot;statisfy&quot;);
+const spotify = new Spotify({
+  client_id:&quot;xxxxxx&quot;, // your client id here
+  client_secret:&quot;xxxxxxx&quot; // your client secret here
+});
+async function spot(){
+  console.log(await spotify.getPlaylist(&quot;57AoCP0MBsk5kjtTRCprKP&quot;)); // id of playlist - open.spotify.com/playlist/x
+  console.log(await spotify.top({
+    time:&quot;medium_term&quot;, // short_term (4 weeks), medium_term (6 months), or long_term (Lifetime)
+    type:&quot;artists&quot;, // artists or tracks
+    limit:&quot;1&quot;// amount of artists to show 
+  }));
+};
+spot()
+</code></pre>
+<h3>Example Response</h3>
+<pre class="prettyprint source lang-js"><code>// Top
+[
+  {
+    external_urls: {
+      spotify: 'https://open.spotify.com/artist/2zAshenjqDlcL4pudfySBY'
+    },
+    followers: { href: null, total: 38297 },
+    genres: [ 'alternative r&b', 'chill r&b', 'indie r&b' ],
+    href: 'https://api.spotify.com/v1/artists/2zAshenjqDlcL4pudfySBY',
+    id: '2zAshenjqDlcL4pudfySBY',
+    images: [ [Object], [Object], [Object] ],
+    name: 'emawk',
+    popularity: 53,
+    type: 'artist',
+    uri: 'spotify:artist:2zAshenjqDlcL4pudfySBY'
+  }
+]
+// Playlist
+{
+  collaborative: false,
+  description: '',
+  external_urls: {
+    spotify: 'https://open.spotify.com/playlist/4XpJdPT0WpzN5qx0oEjX2u'
+  },
+  followers: { href: null, total: 0 },
+  href: 'https://api.spotify.com/v1/playlists/4XpJdPT0WpzN5qx0oEjX2u',
+  id: '4XpJdPT0WpzN5qx0oEjX2u',
+  images: [
+    {
+      height: 640,
+      url: 'https://mosaic.scdn.co/640/ab67616d0000b27303f6fbd3817030884ba916d6ab67616d0000b2734c79d5ec52a6d0302f3add25ab67616d0000b2735bafd20f6f6572adaa76d187ab67616d0000b273b85eeb572ae2073ab4cb8db6',
+      width: 640
+    },
+    {
+      height: 300,
+      url: 'https://mosaic.scdn.co/300/ab67616d0000b27303f6fbd3817030884ba916d6ab67616d0000b2734c79d5ec52a6d0302f3add25ab67616d0000b2735bafd20f6f6572adaa76d187ab67616d0000b273b85eeb572ae2073ab4cb8db6',
+      width: 300
+    },
+    {
+      height: 60,
+      url: 'https://mosaic.scdn.co/60/ab67616d0000b27303f6fbd3817030884ba916d6ab67616d0000b2734c79d5ec52a6d0302f3add25ab67616d0000b2735bafd20f6f6572adaa76d187ab67616d0000b273b85eeb572ae2073ab4cb8db6',
+      width: 60
+    }
+  ],
+  name: 'science',
+  owner: {
+    display_name: 'marcus',
+    external_urls: { spotify: 'https://open.spotify.com/user/singerloud' },
+    href: 'https://api.spotify.com/v1/users/singerloud',
+    id: 'singerloud',
+    type: 'user',
+    uri: 'spotify:user:singerloud'
+  },
+  primary_color: null,
+  public: true,
+  snapshot_id: 'OSw3N2JiNGIxYjNjNDBiZjhiYzc1MDE0YjEwNGE1N2JlMGI2NTc2MzVj',
+  tracks: {
+    href: 'https://api.spotify.com/v1/playlists/4XpJdPT0WpzN5qx0oEjX2u/tracks?offset=0&limit=100',
+    items: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+    limit: 100,
+    next: null,
+    offset: 0,
+    previous: null,
+    total: 6
+  },
+  type: 'playlist',
+  uri: 'spotify:playlist:4XpJdPT0WpzN5qx0oEjX2u'
+}
+</code></pre>
+<h2>NPM</h2>
+<h3>Functions</h3>
+<ul>
+<li>npm</li>
+</ul>
+<h3>CommonJS Usage</h3>
+<pre class="prettyprint source lang-js"><code>    const { npm } = require(&quot;statisfy&quot;);
+    async function getNPM(pkg) => {
+    const result = await npm(pkg); 
+    console.log(result);
+    }
+    getNPM(&quot;statisfy&quot;) // your package here
+</code></pre>
+<p> </p>
+<h3>ES6 Usage</h3>
+<pre class="prettyprint source lang-js"><code>    import { npm } from &quot;statisfy&quot;;
+     async function getNPM(pkg) => {
+    const result = await npm(pkg); 
+    console.log(result);
+    }
+    getNPM(&quot;statisfy&quot;) // your package here
+</code></pre>
+<p> </p>
+<h3>Result</h3>
+<pre class="prettyprint source lang-js"><code>{
+  name: 'statisfy',
+  scope: 'unscoped',
+  version: '1.1.5',
+  description: 'Get statistics from all of your favourite social media sites, games and more!',
+  keywords: [ 'stats', 'statistics', 'social', 'media', 'api' ],
+  date: '2021-08-24T20:11:48.377Z',
+  links: {
+    npm: 'https://www.npmjs.com/package/statisfy',
+    homepage: 'https://github.com/aspekts/statisfynpm#readme',
+    repository: 'https://github.com/aspekts/statisfynpm',
+    bugs: 'https://github.com/aspekts/statisfynpm/issues'
+  },
+  author: { name: 'Aspekts' },
+  publisher: { username: 'aspekts', email: 'aspektsbuisness@gmail.com' },
+  maintainers: [ { username: 'aspekts', email: 'aspektsbuisness@gmail.com' } ]
+}
+</code></pre>
+<p> <br>
+ </p>
+<h2>Twitch</h2>
+<h3>Getting Client ID and Client Secret</h3>
+<p>Head to https://dev.twitch.tv/console and login with your twitch acccount.</p>
+<p>From there you will find you will need to register a new application.</p>
+<p>Inside the application you will see your Client ID.</p>
+<p>You can generate a Client Secret by completing the captcha and selecting &quot;New Secret&quot;.</p>
+<p> </p>
+<h2>Functions</h2>
+<ul>
+<li>getUserByName</li>
+<li>getUserByID</li>
+<li>getChannelInfo</li>
+<li>searchChannels</li>
+<li>getToken</li>
+</ul>
+<p> </p>
+<h3>CommonJS Example Usage</h3>
+<p> </p>
+<pre class="prettyprint source lang-js"><code>const { Twitch } = require(&quot;statisfy&quot;);
+const ttv = new Twitch({
+    client_id : &quot;12345abcde&quot;, // your client id here
+    client_secret: &quot;67890fghij&quot; // your client secret here
+});
+async function channelInfo() {
+    const info = await ttv.getUserByName(&quot;Ludwig&quot;); // your channel here
+    console.log(info)
+}
+channelInfo()
+</code></pre>
+<p> </p>
+<h3>Result</h3>
+<pre class="prettyprint source lang-js"><code>{
+  id: '201761728',
+  login: 'aspekts',
+  display_name: 'Aspekts',
+  type: '',
+  broadcaster_type: '',
+  description: &quot;I'm Aspekts. A regular guy who has like no viewers or followers trying to have fun really. Follow if want, it's up to you honestly (PLEASE DO) &quot;,
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/2b6fd40a-33c9-4a4b-a0c8-eb8169f836ae-profile_image-300x300.png',
+  offline_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/65dcb42c-a22d-445d-a2bd-01e3e15ca510-channel_offline_image-1920x1080.jpeg',
+  view_count: 188,
+  created_at: '2018-03-03T18:01:17Z'
+}
+</code></pre>
+<p> </p>
+<h2>Twitter (ALPHA)</h2>
+<h3>Functions</h3>
+<ul>
+<li>UserLookupByName</li>
+</ul>
+<h3>CommonJS Example Usage</h3>
+<pre class="prettyprint source lang-js"><code>const { Twitter } = require(&quot;statisfy&quot;);
+const twt = new Twitter({
+  token: &quot;ABCD1234&quot; // your bearer token here
+})
+async function twttest() {
+    const result = await twt.UserLookupByName(&quot;POTUS&quot;)
+    console.log(result)
+}
+twttest()
+</code></pre>
+<h3>Result</h3>
+<pre class="prettyprint source lang-js"><code>{
+  created_at: '2021-01-13T00:37:08.000Z',
+  public_metrics: {
+    followers_count: 13665857,
+    following_count: 12,
+    tweet_count: 1372,
+    listed_count: 13037
+  },
+  protected: false,
+  verified: true,
+  url: 'https://t.co/IxLjEB2zlE',
+  id: '1349149096909668363',
+  description: '46th President of the United States, husband to @FLOTUS, proud dad & pop. Tweets may be archived: https://t.co/IURuMIrzxb',
+  username: 'POTUS',
+  entities: {
+    url: { urls: [Array] },
+    description: { urls: [Array], mentions: [Array] }
+  },
+  profile_image_url: 'https://pbs.twimg.com/profile_images/1380530524779859970/TfwVAbyX_normal.jpg',
+  name: 'President Biden'
+}
+</code></pre>
+<p> </p>
+<h2>TRN (ALPHA)</h2>
+<p> </p>
+<h3>Functions</h3>
+<ul>
+<li>Fortnite</li>
+<li>Apex Legends<br>
+ </li>
+</ul>
+<h3>CommonJS Example Usage</h3>
+<pre class="prettyprint source lang-js"><code>const { TRN } = require(&quot;statisfy&quot;);
+const trn = new TRN({
+  key:&quot;ABC1234&quot; // Tracker Network API Key
+});
+async function apextest() {
+    const result = await trn.ApexLegends({
+        username:'xAspekts',
+        platform: &quot;xbl&quot;
+    });
+    console.log(result)
+}
+apextest() 
+async function fntest(){
+    const result = await trn.Fortnite({
+        username:'Ninja',
+        platform:'kbm'
+    })
+    console.log(result)
+}
+fntest()
+</code></pre>
+<p> </p>
+<h3>Results - Apex Legends</h3>
+<p> </p>
+<pre class="prettyprint source lang-js"><code>{
+  platformInfo: {
+    platformSlug: 'xbl',
+    platformUserId: 'xAspekts',
+    platformUserHandle: 'xAspekts',
+    platformUserIdentifier: 'xAspekts',
+    avatarUrl: 'https://images-eds-ssl.xboxlive.com/image?url=wHwbXKif8cus8csoZ03RW8ke8ralOdP9BGd4wzwl0MJ9z6QzuGwZjtvbE7sSsMVW3GtqdB8tr2M604Js_A5hRb4ej1NAlLgfikoRUkt8XGoBbs9TId_M9.NIOpyumXn9la5RYDGV9y_fYQlPsMeH74.dFI.YBGHTHVD6_tFiUCo-',
+    additionalParameters: null
+  },
+  userInfo: {
+    userId: 4668724,
+    isPremium: false,
+    isVerified: false,
+    isInfluencer: false,
+    isPartner: false,
+    countryCode: 'GB',
+    customAvatarUrl: null,
+    customHeroUrl: null,
+    socialAccounts: [],
+    pageviews: 6,
+    isSuspicious: null
+  },
+  metadata: {
+    currentSeason: 2,
+    activeLegend: 'legend_13',
+    activeLegendName: 'Loba',
+    activeLegendStats: [ 'Season 8 Wins', 'Kills' ]
+  },
+  segments: [
+    {
+      type: 'overview',
+      attributes: {},
+      metadata: [Object],
+      expiryDate: '2022-01-29T14:29:21.2766514+00:00',
+      stats: [Object]
+    },
+    {
+      type: 'legend',
+      attributes: [Object],
+      metadata: [Object],
+      expiryDate: '2022-01-29T14:29:21.2766514+00:00',
+      stats: [Object]
+    },
+    {
+      type: 'legend',
+      attributes: [Object],
+      metadata: [Object],
+      expiryDate: '2022-01-29T14:29:21.2766514+00:00',
+      stats: [Object]
+    }
+  ],
+  availableSegments: [ { type: 'legend', attributes: {}, metadata: {} } ],
+  expiryDate: '2022-01-29T14:29:21.2766514+00:00'
+}
+</code></pre>
+<h2>Problems or issues?</h2>
+<p>If you encounter any problems, bugs or other issues with the package, please create an <a href="https://github.com/aspekts/statisfynpm/issues">issue in the GitHub repo</a>.</p>
+<p> </p>
+<h2>Contact</h2>
+<p>If you have any questions or just want to reach me, you can get in touch with me on my <a href="https://discord.gg/GxGTHBC">Discord server</a>.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	Yarn Development Copyright © 2022 - yarndev.xyz
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a>
+	
+		on Tue May 3rd 2022
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

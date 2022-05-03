@@ -1,3 +1,4 @@
+
 import fetch from "node-fetch";
 import chalk from "chalk";
 import http from "http";
@@ -7,6 +8,12 @@ export const Spotify = class Spotify{
     this.secret = client_secret;
   };
 
+  /**
+   * It takes the client id and secret, encodes them into base64, and sends them to the Spotify API to
+   * get an access token.
+   * </code>
+   * @returns The access token is being returned.
+   */
   async access_token(){
     const params = new URLSearchParams()
     params.append("grant_type","client_credentials")
@@ -28,6 +35,12 @@ export const Spotify = class Spotify{
         }
   }
   async oauth({scopes,uri}) {
+    /**
+     * It creates a server on the given port, and returns a promise that resolves to the url that the
+     * server receives a request on.
+     * @param port - The port number to listen on.
+     * @returns A promise that resolves to a string.
+     */
     const getLocalhostUrl = async function (port){
       return new Promise((resolve, reject) => {
         const server = http
@@ -45,6 +58,7 @@ export const Spotify = class Spotify{
           .listen(port);
       });
     }
+    /* Getting the access token. */
     let state = Math.random().toString(36).slice(2);
     const spotifyUrl =
       'https://accounts.spotify.com/authorize?' +
@@ -92,6 +106,12 @@ export const Spotify = class Spotify{
     let body = await res.json()
     return body.access_token;
   }
+  /**
+   * It takes a url, gets an access token, and then makes a request to the url with the access token.
+   * You can use <code>async/await</code> to make it easier to read.
+   * @param url - The url you want to request.
+   * @returns The response body.
+   */
   async req(url){
     let token = await this.access_token();
     let res = await fetch(url,{
@@ -107,6 +127,10 @@ export const Spotify = class Spotify{
             throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
   }
+/**
+ * It gets the top tracks/artists from the user's account
+ * @returns An array of objects.
+ */
   async top({time,type,limit}){
     let token = await this.oauth({scopes:"user-top-read",uri:"http://localhost:8888"});
     let res = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${time}&limit=${limit}&offset=0`,{
@@ -122,6 +146,11 @@ export const Spotify = class Spotify{
             throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
   }
+ /**
+  * It takes a playlist ID and returns the playlist's data.
+  * @param playlist - The Spotify ID of the playlist you want to get.
+  * @returns The data from the request.
+  */
   async getPlaylist(playlist){
   let data = await this.req(`https://api.spotify.com/v1/playlists/${playlist}`);
     return data;

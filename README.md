@@ -30,7 +30,7 @@ For remote servers and people who have port 8888 in use, you can use the Oauth f
 ```js
 const { Spotify } = require("statisfy");
 const spotify = new Spotify({
-  client_id:"xxxxxx" // your client id here
+  client_id:"xxxxxx", // your client id here
   client_secret:"xxxxxxx" // your client secret here
 });
 async function spot(){
