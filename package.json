@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/Yarn-Development/statisfynpm/issues"
   },
-  "homepage": "https://github.com/Yarn-Development/statisfynpm#readme",
+  "homepage": "https://statisfy.js.org",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "chalk": "^4.1.2",
