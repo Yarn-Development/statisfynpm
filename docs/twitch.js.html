@@ -95,14 +95,14 @@ export const Twitch = class Twitch {
         let body = await info.json();
         if (info.ok) {
             if(body.access_token == null) {
-                throw new Error(chalk.bold.red("[Statisfy] Token generation error."))
+                exit("[Statisfy] Token generation error."))
             }
             else  {
             return body.access_token;
             }
         }
         else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            exit(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
        
     }
@@ -118,10 +118,10 @@ export const Twitch = class Twitch {
            throw new Error(`${chalk.bold.red("[Statisfy] ERROR:")} Access Token generation failed. Please try again.`)
        }
        if(this.client == null) {
-           throw new Error(chalk.bold.red("[Statisfy] ERROR: Twitch Client ID not provided."))
+           exit("[Statisfy] ERROR: Twitch Client ID not provided."))
        }
        else if (this.secret == null){
-           throw new Error(chalk.bold.red("[Statisfy] ERROR: Twitch Client Secret not provided."))
+           exit("[Statisfy] ERROR: Twitch Client Secret not provided."))
        }
        let res = await fetch(url,{
            method:'GET',
@@ -135,7 +135,7 @@ export const Twitch = class Twitch {
            return body.data;
        }
        else {
-           throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+           exit(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
        }
    }
 
@@ -147,7 +147,7 @@ export const Twitch = class Twitch {
         */
        async getUserByName(username) {
         if(username == null) {
-            throw new Error(chalk.bold.red("[Statisfy] ERROR: Username not provided."))
+            exit("[Statisfy] ERROR: Username not provided."))
         }
            let info = await this.req(`https://api.twitch.tv/helix/users?login=${username.toLowerCase()}`);
            return info[0];

@@ -108,7 +108,7 @@ export const Twitter = class Twitter {
             return body.data;
         }
         else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            exit(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
     }
 /**

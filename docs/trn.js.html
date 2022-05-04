@@ -99,7 +99,7 @@ export const TRN  = class TRN {
             return body;
         }
         else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            exit(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
     }
    /**

@@ -117,7 +117,7 @@ export const Spotify = class Spotify{
         }
         else {
           console.log(body)
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            exit(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
   }
 /**
@@ -218,7 +218,7 @@ export const Spotify = class Spotify{
             return body;
         }
         else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            exit(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
   }
 /**
@@ -241,7 +241,7 @@ export const Spotify = class Spotify{
             return body.items;
         }
         else {
-            throw new Error(chalk.bold.red(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
+            exit(`[Statisfy] ${body.status} ERROR: ${body.error}`) + ` - ${body.message}`)
         }
   }
  /**
