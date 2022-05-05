@@ -1,5 +1,4 @@
 import fetch from "node-fetch";
-import chalk from "chalk";
 import { exit } from "../utils.js";
 /**
  * @class

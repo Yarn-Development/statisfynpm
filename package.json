@@ -1,6 +1,6 @@
 {
-  "name": "statisfy",
-  "version": "1.1.6",
+  "name": "@Yarn-Development/statisfy",
+  "version": "1.17",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
   "main": "./dist/index.js",
   "scripts": {
@@ -21,12 +21,12 @@
     "api"
   ],
   "author": "Aspekts",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Yarn-Development/statisfynpm/issues"
+  },
+  "publishConfig":{
+    "registry": "https://npm.pkg.github.io"
   },
   "homepage": "https://statisfy.js.org",
   "dependencies": {
