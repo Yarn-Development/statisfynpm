@@ -55,7 +55,7 @@ export const TRN = class TRN {
 	async Fortnite({ username, platform }) {
 		const platforms = ["kbm", "gamepad", "touch"];
 		if(!platforms.includes(platform)) {
-			throw new TypeError(chalk.bold.red(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`));
+			exit(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`);
 		}
 		const info = await this.req(`https://api.fortnitetracker.com/v1/profile/${platform}/${username}`);
 		return info;

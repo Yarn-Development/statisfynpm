@@ -1,13 +1,14 @@
 {
-  "name": "@Yarn-Development/statisfy",
+  "name": "statisfy",
   "version": "1.17",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "node --experimental-json-modules ./test/index.js",
+    "test": "node ./test/index.js",
     "build": "babel src --out-dir dist",
     "format": "eslint ./src/ --fix",
-    "start": "npm run build && npm link && npm link statisfy && npm run test"
+    "docs":"jsdoc ./jsdoc.conf.json -d ./docs -r --verbose -P ./package.json ./src",
+    "start": "npm run docs && npm run build && npm link && npm link statisfy && npm run test"
   },
   "repository": {
     "type": "git",
