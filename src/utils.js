@@ -15,8 +15,8 @@ export const red = (msg) =>
 	"\u001B[" + 31 + "m" + msg + "\u001B[" + 39 + "m";
 
 /**
- * @function exit
  * It prints a message to the console and then exits the process
+ * @function exit
  * @param message - The message to display.
  * @param color - The color of the message.
  */

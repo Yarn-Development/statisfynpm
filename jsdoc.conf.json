@@ -1,28 +1,18 @@
 {
-    "tags": {
-      "allowUnknownTags": true
-    },
-    "plugins": ["plugins/markdown"],
-    "templates": {
-      "logoFile": "https://cdn.discordapp.com/attachments/695957739255627777/936688582905704448/statisfy.png",
-      "cleverLinks": false,
-      "monospaceLinks": false,
-      "dateFormat": "ddd MMM Do YYYY",
-      "outputSourceFiles": true,
-      "outputSourcePath": true,
-      "systemName": "Statisfy",
-      "footer": "",
-      "copyright": "Yarn Development Copyright © 2022 - yarndev.xyz",
-      "navType": "inline",
-      "theme": "cyborg",
-      "linenums": true,
-      "collapseSymbols": false,
-      "inverseNav": true,
-      "protocol": "html://",
-      "methodHeadingReturns": false
-    },
-    "markdown": {
-      "parser": "gfm",
-      "hardwrap": true
-    }
+  "source": {
+
+      "include": ["src", "README.md"]
+  },
+
+  "opts": {
+      "encoding": "utf8",
+      "readme": "./README.md",
+      "destination": "docs/",
+      "recurse": true,
+      "verbose": true,
+      "template": "./node_modules/clean-jsdoc-theme",
+      "theme_opts": {
+          "theme": "dark"
+      }
   }
+}

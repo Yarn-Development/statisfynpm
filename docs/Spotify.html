@@ -1,86 +1,124 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Statisfy Class: Spotify</title>
 
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.cyborg.css">
+    <!-- Adding favicon -->
+    
 
-</head>
+    <!-- Adding meta -->
+    
 
-<body>
+    <!-- Adding external script-->
+    
 
-<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
-<div class="container">
-	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html"><img class="branding-logo" src="https://cdn.discordapp.com/attachments/695957739255627777/936688582905704448/statisfy.png"
-		alt="logo"/>Statisfy</a>
-		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-        </button>
-	</div>
-	<div class="navbar-collapse collapse" id="topNavigation">
-		<ul class="nav navbar-nav">
-			
-			<li class="dropdown">
-				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-				<ul class="dropdown-menu inline">
-					<li><a href="Spotify.html">Spotify</a></li><li><a href="TRN.html">TRN</a></li><li><a href="Twitch.html">Twitch</a></li><li><a href="Twitter.html">Twitter</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu inline">
-					<li><a href="global.html#npm">npm</a></li>
-				</ul>
-			</li>
-			
-		</ul>
-        
-            <div class="col-sm-3 col-md-3">
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        
-	</div>
+    <!-- Adding external style-->
+    
 
-</div>
-</div>
+    <!-- Adding scripts-->
+    
+
+    <!-- Adding style-->
+    
+
+    <!-- Adding overlay script-->
+    
+
+    <!-- Adding overlay style-->
+    
 
 
-<div class="container" id="toc-content">
-<div class="row">
+    <title>
+      Spotify
+    </title>
 
-	
-	<div class="col-md-8">
-	
-		<div id="main">
-			
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-dark.css">
+    
+    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path
+                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
+                <path
+                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
+            </g>
+        </symbol>
+        <symbol id='search-icon' viewBox="0 0 512 512">
+            <g>
+                <g>
+                    <path
+                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
+                </g>
+            </g>
+            <g>
+                <g>
+                    <path
+                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
+                </g>
+            </g>
+        </symbol>
+        <symbol id="down-icon" viewBox="0 0 16 16">
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
+            >
+            </path>
+        </symbol>
+    </defs>
+</svg>
+  </head>
 
-	<h1 class="page-title">Class: Spotify</h1>
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="5999906" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=3775739><div class="accordion-heading child"><a href="Spotify.html">Spotify</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Spotify.html#access_token">access_token</a></li><li data-type='method'><a href="Spotify.html#getPlaylist">getPlaylist</a></li><li data-type='method'><a href="Spotify.html#oauth">oauth</a></li><li data-type='method'><a href="Spotify.html#req">req</a></li><li data-type='method'><a href="Spotify.html#top">top</a></li></ul></li><li class="accordion collapsed child" id=2661769><div class="accordion-heading child"><a href="TRN.html">TRN</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TRN.html#ApexLegends">ApexLegends</a></li><li data-type='method'><a href="TRN.html#Fortnite">Fortnite</a></li><li data-type='method'><a href="TRN.html#req">req</a></li></ul></li><li class="accordion collapsed child" id=9550082><div class="accordion-heading child"><a href="Twitch.html">Twitch</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Twitch.html#getChannelInfo">getChannelInfo</a></li><li data-type='method'><a href="Twitch.html#getToken">getToken</a></li><li data-type='method'><a href="Twitch.html#getUserByID">getUserByID</a></li><li data-type='method'><a href="Twitch.html#getUserByName">getUserByName</a></li><li data-type='method'><a href="Twitch.html#req">req</a></li><li data-type='method'><a href="Twitch.html#searchChannels">searchChannels</a></li></ul></li><li class="accordion collapsed child" id=2373868><div class="accordion-heading child"><a href="Twitter.html">Twitter</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Twitter.html#req">req</a></li><li data-type='method'><a href="Twitter.html#UserLookupByName">UserLookupByName</a></li></ul></li></ul> </div><div class="accordion collapsed" id="2779611" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#exit">exit</a></li><li class="accordion-list" id=""><a href="global.html#npm">npm</a></li><li class="accordion-list" id=""><a href="global.html#red">red</a></li><li class="accordion-list" id=""><a href="global.html#yellow">yellow</a></li></ul> </div>
+      
+
+    </nav>
+    <div class="navbar-ham" id="navbar-ham">
+      <div>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+      </div>
+    </div>
+
+    <div id="main" class="main-content">
+      
+      <h1 id='page-title' class="page-title">
+        Spotify
+      </h1>
+      
+
+      
+
+
+
+
 <section>
+
 
 <header>
     
+        
         <h2>
+        
         Spotify
+        
         </h2>
+        
         
     
 </header>
@@ -90,26 +128,31 @@
     <div class="container-overview">
     
         
-<hr>
-<dt>
-    <h4 class="name" id="Spotify"><span class="type-signature"></span>new Spotify(client_id, client_secret)</h4>
-    
-    
-</dt>
-<dd>
 
     
 
-    
+    <h4 class="name" id="Spotify">
+        <a href="#Spotify">#</a>
+        <span class="type-signature"></span>new Spotify<span class="signature">(client_id, client_secret)</span><span class="type-signature"></span>
+    </h4>
 
     
 
-    
-    
-        <h5>Parameters:</h5>
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
         
 
-<table class="params table table-striped">
+<table class="params">
     <thead>
     <tr>
         
@@ -140,7 +183,6 @@
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -148,7 +190,7 @@
 
             
 
-            <td class="description last"><p>Spotify client ID</p></td>
+            <td class="description last">Spotify client ID</td>
         </tr>
 
     
@@ -164,7 +206,6 @@
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -172,24 +213,22 @@
 
             
 
-            <td class="description last"><p>Spotify client secret</p></td>
+            <td class="description last">Spotify client secret</td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
+    </div>
 
-    
+
+
+
+
+
+
 <dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
@@ -199,52 +238,54 @@
 
     
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
+    
 
+    
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="classes_spotify.js.html">classes/spotify.js</a>,
-				 <a href="classes_spotify.js.html#sunlight-1-line-11">line 11</a>
-			</li>
-		</ul>
-	</dd>
-	
+    
 
-	
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line10">line 10</a>
+            </li></ul></dd>
+        </div>
+    
 
-	
+    
 
-	
+    
+
+    
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-</dd>
+
+
+
+
+
+
+
+
+
 
     
     </div>
@@ -255,7 +296,7 @@
 
     
 
-    
+     
 
     
 
@@ -264,39 +305,39 @@
     
         <h3 class="subsection-title">Methods</h3>
 
-        <dl>
+        
             
-<hr>
-<dt>
-    <h4 class="name" id="access_token"><span class="type-signature">&lt;async> </span>access_token()</h4>
-    
-    
-</dt>
-<dd>
 
     
+
+    <h4 class="name" id="access_token">
+        <a href="#access_token">#</a>
+        <span class="type-signature">(async) </span>access_token<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
     <div class="description">
-        <p>It takes the client id and secret, encodes them into base64, and sends them to the Spotify API to<br>
-get an access token.</p>
+        It takes the client id and secret, encodes them into base64, and sends them to the Spotify API toget an access token.
     </div>
-    
 
-    
 
-    
 
-    
-    
 
-    
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
@@ -306,90 +347,99 @@ get an access token.</p>
 
     
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
+    
 
+    
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="classes_spotify.js.html">classes/spotify.js</a>,
-				 <a href="classes_spotify.js.html#sunlight-1-line-23">line 23</a>
-			</li>
-		</ul>
-	</dd>
-	
+    
 
-	
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line22">line 22</a>
+            </li></ul></dd>
+        </div>
+    
 
-	
+    
 
-	
+    
+
+    
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-    <h5>Returns:</h5>
-    
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
             
 <div class="param-desc">
-    <p>The access token is being returned.</p>
+    The access token is being returned.
 </div>
 
 
 
+            
+    </div>
 
-        
 
-    
-</dd>
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id="getPlaylist"><span class="type-signature">&lt;async> </span>getPlaylist(playlist)</h4>
-    
-    
-</dt>
-<dd>
 
     
+
+    <h4 class="name" id="getPlaylist">
+        <a href="#getPlaylist">#</a>
+        <span class="type-signature">(async) </span>getPlaylist<span class="signature">(playlist)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
     <div class="description">
-        <p>It takes a playlist ID and returns the playlist's data.</p>
+        It takes a playlist ID and returns the playlist's data.
     </div>
-    
 
-    
 
-    
 
-    
-    
-        <h5>Parameters:</h5>
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
         
 
-<table class="params table table-striped">
+<table class="params">
     <thead>
     <tr>
         
@@ -420,7 +470,6 @@ get an access token.</p>
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -428,24 +477,22 @@ get an access token.</p>
 
             
 
-            <td class="description last"><p>The Spotify ID of the playlist you want to get.</p></td>
+            <td class="description last">The Spotify ID of the playlist you want to get.</td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
+    </div>
 
-    
+
+
+
+
+
+
 <dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
@@ -455,86 +502,95 @@ get an access token.</p>
 
     
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
+    
 
+    
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="classes_spotify.js.html">classes/spotify.js</a>,
-				 <a href="classes_spotify.js.html#sunlight-1-line-173">line 173</a>
-			</li>
-		</ul>
-	</dd>
-	
+    
 
-	
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line172">line 172</a>
+            </li></ul></dd>
+        </div>
+    
 
-	
+    
 
-	
+    
+
+    
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-    <h5>Returns:</h5>
-    
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
             
 <div class="param-desc">
-    <p>The data from the request.</p>
+    The data from the request.
 </div>
 
 
 
+            
+    </div>
 
-        
 
-    
-</dd>
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id="oauth"><span class="type-signature">&lt;async> </span>oauth(scopes, uri)</h4>
-    
-    
-</dt>
-<dd>
 
     
 
-    
+    <h4 class="name" id="oauth">
+        <a href="#oauth">#</a>
+        <span class="type-signature">(async) </span>oauth<span class="signature">(scopes, uri)</span><span class="type-signature"></span>
+    </h4>
 
     
 
-    
-    
-        <h5>Parameters:</h5>
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
         
 
-<table class="params table table-striped">
+<table class="params">
     <thead>
     <tr>
         
@@ -565,7 +621,6 @@ get an access token.</p>
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -573,7 +628,7 @@ get an access token.</p>
 
             
 
-            <td class="description last"><p>Scopes required to authenticate</p></td>
+            <td class="description last">Scopes required to authenticate</td>
         </tr>
 
     
@@ -589,7 +644,6 @@ get an access token.</p>
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -597,24 +651,22 @@ get an access token.</p>
 
             
 
-            <td class="description last"><p>Redirect URL to callback following authentication</p></td>
+            <td class="description last">Redirect URL to callback following authentication</td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
+    </div>
 
-    
+
+
+
+
+
+
 <dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
@@ -624,91 +676,99 @@ get an access token.</p>
 
     
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
+    
 
+    
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="classes_spotify.js.html">classes/spotify.js</a>,
-				 <a href="classes_spotify.js.html#sunlight-1-line-49">line 49</a>
-			</li>
-		</ul>
-	</dd>
-	
+    
 
-	
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line48">line 48</a>
+            </li></ul></dd>
+        </div>
+    
 
-	
+    
 
-	
+    
+
+    
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-    <h5>Returns:</h5>
-    
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
             
 <div class="param-desc">
-    <p>Access Token</p>
+    Access Token
 </div>
 
 
 
+            
+    </div>
 
-        
 
-    
-</dd>
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id="req"><span class="type-signature">&lt;async> </span>req(url)</h4>
-    
-    
-</dt>
-<dd>
 
     
+
+    <h4 class="name" id="req">
+        <a href="#req">#</a>
+        <span class="type-signature">(async) </span>req<span class="signature">(url)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
     <div class="description">
-        <p>It takes a url, gets an access token, and then makes a request to the url with the access token.<br>
-You can use <code>async/await</code> to make it easier to read.</p>
+        It takes a url, gets an access token, and then makes a request to the url with the access token.You can use <code>async/await</code> to make it easier to read.
     </div>
-    
 
-    
 
-    
 
-    
-    
-        <h5>Parameters:</h5>
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
         
 
-<table class="params table table-striped">
+<table class="params">
     <thead>
     <tr>
         
@@ -739,7 +799,6 @@ You can use <code>async/await</code> to make it easier to read.</p>
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -747,24 +806,22 @@ You can use <code>async/await</code> to make it easier to read.</p>
 
             
 
-            <td class="description last"><p>The url you want to request.</p></td>
+            <td class="description last">The url you want to request.</td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
+    </div>
 
-    
+
+
+
+
+
+
 <dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
@@ -774,90 +831,99 @@ You can use <code>async/await</code> to make it easier to read.</p>
 
     
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
+    
 
+    
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="classes_spotify.js.html">classes/spotify.js</a>,
-				 <a href="classes_spotify.js.html#sunlight-1-line-129">line 129</a>
-			</li>
-		</ul>
-	</dd>
-	
+    
 
-	
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line128">line 128</a>
+            </li></ul></dd>
+        </div>
+    
 
-	
+    
 
-	
+    
+
+    
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-    <h5>Returns:</h5>
-    
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
             
 <div class="param-desc">
-    <p>The response body.</p>
+    The response body.
 </div>
 
 
 
+            
+    </div>
 
-        
 
-    
-</dd>
+
 
         
             
-<hr>
-<dt>
-    <h4 class="name" id="top"><span class="type-signature">&lt;async> </span>top(time, type, limit)</h4>
-    
-    
-</dt>
-<dd>
 
     
+
+    <h4 class="name" id="top">
+        <a href="#top">#</a>
+        <span class="type-signature">(async) </span>top<span class="signature">(time, type, limit)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
     <div class="description">
-        <p>It gets the top tracks/artists from the user's account</p>
+        It gets the top tracks/artists from the user's account
     </div>
-    
 
-    
 
-    
 
-    
-    
-        <h5>Parameters:</h5>
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
         
 
-<table class="params table table-striped">
+<table class="params">
     <thead>
     <tr>
         
@@ -888,7 +954,6 @@ You can use <code>async/await</code> to make it easier to read.</p>
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -896,7 +961,7 @@ You can use <code>async/await</code> to make it easier to read.</p>
 
             
 
-            <td class="description last"><p>Period of time to fetch top stats for: short_term(4 weeks), medium_term(6 months) or long_term(lifetime)</p></td>
+            <td class="description last">Period of time to fetch top stats for: short_term(4 weeks), medium_term(6 months) or long_term(lifetime)</td>
         </tr>
 
     
@@ -912,7 +977,6 @@ You can use <code>async/await</code> to make it easier to read.</p>
 <span class="param-type">String</span>
 
 
-
             
             </td>
 
@@ -920,7 +984,7 @@ You can use <code>async/await</code> to make it easier to read.</p>
 
             
 
-            <td class="description last"><p>Type of Data fetched: Either artists or tracks</p></td>
+            <td class="description last">Type of Data fetched: Either artists or tracks</td>
         </tr>
 
     
@@ -936,7 +1000,6 @@ You can use <code>async/await</code> to make it easier to read.</p>
 <span class="param-type">Integer</span>
 
 
-
             
             </td>
 
@@ -944,24 +1007,22 @@ You can use <code>async/await</code> to make it easier to read.</p>
 
             
 
-            <td class="description last"><p>Amount of top artists/tracks to be fetched</p></td>
+            <td class="description last">Amount of top artists/tracks to be fetched</td>
         </tr>
 
     
     </tbody>
 </table>
 
-    
+    </div>
 
-    
+
+
+
+
+
+
 <dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
@@ -971,65 +1032,69 @@ You can use <code>async/await</code> to make it easier to read.</p>
 
     
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
-	
+    
 
+    
 
+    
 
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="classes_spotify.js.html">classes/spotify.js</a>,
-				 <a href="classes_spotify.js.html#sunlight-1-line-152">line 152</a>
-			</li>
-		</ul>
-	</dd>
-	
+    
 
-	
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line151">line 151</a>
+            </li></ul></dd>
+        </div>
+    
 
-	
+    
 
-	
+    
+
+    
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
 
-    
-    <h5>Returns:</h5>
-    
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
             
 <div class="param-desc">
-    <p>An array of objects.</p>
+    An array of objects.
 </div>
+
+
+
+            
+    </div>
 
 
 
 
         
-
-    
-</dd>
-
-        </dl>
     
 
     
@@ -1042,136 +1107,37 @@ You can use <code>async/await</code> to make it easier to read.</p>
 
 
 
-		</div>
-	</div>
-
-	<div class="clearfix"></div>
-
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
-	
-
-</div>
-</div>
-
-
-    <div class="modal fade" id="searchResults">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Search results</h4>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
     </div>
 
+    <footer class="footer" id="footer">
+      
+    </footer>
 
-<footer>
+    <script src="scripts/third-party/prettify.js"></script>
+    <script src="scripts/third-party/lang-css.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
 
+    <script>prettyPrint();</script>
+    <script src="scripts/linenumber.js"></script>
+    <script src="scripts/fix-code-block.js"></script>
+    <script src="scripts/fix-navbar.js"></script>
+    
+      <script src="scripts/search.js"></script>
+      <script src="scripts/third-party/fuse.js"></script>
+      <script>
+        var list = [{"title":"Spotify","link":"<a href=\"Spotify.html\">Spotify</a>"},{"title":"Spotify#access_token","link":"<a href=\"Spotify.html#access_token\">Spotify &rtrif; access_token</a>"},{"title":"Spotify#getPlaylist","link":"<a href=\"Spotify.html#getPlaylist\">Spotify &rtrif; getPlaylist</a>"},{"title":"Spotify#oauth","link":"<a href=\"Spotify.html#oauth\">Spotify &rtrif; oauth</a>"},{"title":"Spotify#req","link":"<a href=\"Spotify.html#req\">Spotify &rtrif; req</a>"},{"title":"Spotify#top","link":"<a href=\"Spotify.html#top\">Spotify &rtrif; top</a>"},{"title":"TRN","link":"<a href=\"TRN.html\">TRN</a>"},{"title":"TRN#ApexLegends","link":"<a href=\"TRN.html#ApexLegends\">TRN &rtrif; ApexLegends</a>"},{"title":"TRN#Fortnite","link":"<a href=\"TRN.html#Fortnite\">TRN &rtrif; Fortnite</a>"},{"title":"TRN#req","link":"<a href=\"TRN.html#req\">TRN &rtrif; req</a>"},{"title":"Twitch","link":"<a href=\"Twitch.html\">Twitch</a>"},{"title":"Twitch#getChannelInfo","link":"<a href=\"Twitch.html#getChannelInfo\">Twitch &rtrif; getChannelInfo</a>"},{"title":"Twitch#getToken","link":"<a href=\"Twitch.html#getToken\">Twitch &rtrif; getToken</a>"},{"title":"Twitch#getUserByID","link":"<a href=\"Twitch.html#getUserByID\">Twitch &rtrif; getUserByID</a>"},{"title":"Twitch#getUserByName","link":"<a href=\"Twitch.html#getUserByName\">Twitch &rtrif; getUserByName</a>"},{"title":"Twitch#req","link":"<a href=\"Twitch.html#req\">Twitch &rtrif; req</a>"},{"title":"Twitch#searchChannels","link":"<a href=\"Twitch.html#searchChannels\">Twitch &rtrif; searchChannels</a>"},{"title":"Twitter","link":"<a href=\"Twitter.html\">Twitter</a>"},{"title":"Twitter#req","link":"<a href=\"Twitter.html#req\">Twitter &rtrif; req</a>"},{"title":"Twitter#UserLookupByName","link":"<a href=\"Twitter.html#UserLookupByName\">Twitter &rtrif; UserLookupByName</a>"},{"title":"exit","link":"<a href=\"global.html#exit\">exit</a>"},{"title":"npm","link":"<a href=\"global.html#npm\">npm</a>"},{"title":"red","link":"<a href=\"global.html#red\">red</a>"},{"title":"yellow","link":"<a href=\"global.html#yellow\">yellow</a>"}];
+        var options = 
+          setupSearch(list, options)
+      </script>
+    
 
-	<span class="copyright">
-	Yarn Development Copyright © 2022 - yarndev.xyz
-	</span>
+    
 
-<span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a>
-	
-		on Tue May 3rd 2022
-	
-	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
-</span>
-</footer>
+    
 
-<script src="scripts/docstrap.lib.js"></script>
-<script src="scripts/toc.js"></script>
-
-    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
-
-
-<script>
-$( function () {
-	$( "[id*='$']" ).each( function () {
-		var $this = $( this );
-
-		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
-	} );
-
-	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
-		var $this = $( this );
-
-		var example = $this.find( "code" );
-		exampleText = example.html();
-		var lang = /{@lang (.*?)}/.exec( exampleText );
-		if ( lang && lang[1] ) {
-			exampleText = exampleText.replace( lang[0], "" );
-			example.html( exampleText );
-			lang = lang[1];
-		} else {
-			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
-			lang = langClassMatch ? langClassMatch[1] : "javascript";
-		}
-
-		if ( lang ) {
-
-			$this
-			.addClass( "sunlight-highlight-" + lang )
-			.addClass( "linenums" )
-			.html( example.html() );
-
-		}
-	} );
-
-	Sunlight.highlightAll( {
-		lineNumbers : true,
-		showMenu : true,
-		enableDoclinks : true
-	} );
-
-	$.catchAnchorLinks( {
-        navbarOffset: 10
-	} );
-	$( "#toc" ).toc( {
-		anchorName  : function ( i, heading, prefix ) {
-			return $( heading ).attr( "id" ) || ( prefix + i );
-		},
-		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
-		showAndHide : false,
-		smoothScrolling: true
-	} );
-
-	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-	$( '.dropdown-toggle' ).dropdown();
-
-    $( "table" ).each( function () {
-      var $this = $( this );
-      $this.addClass('table');
-    } );
-
-} );
-</script>
+    
 
 
+  </body>
 
-<!--Navigation and Symbol Display-->
-
-
-<!--Google Analytics-->
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            SearcherDisplay.init();
-        });
-    </script>
-
-
-</body>
 </html>
