@@ -73,15 +73,8 @@ export const Spotify = class Spotify {
 		/* Getting the access token. */
 		const state = Math.random().toString(36).slice(2);
 		const spotifyUrl =
-      "https://accounts.spotify.com/authorize?" +
-      new URLSearchParams({
-      	response_type: "code",
-      	show_dialog: "true",
-      	state,
-      	client_id: this.id,
-      	redirect_uri: uri,
-      	scope: scopes,
-      }).toString();
+        "https://accounts.spotify.com/authorize?" +
+        new URLSearchParams({ response_type: "code", show_dialog: "true",	state, client_id: this.id, redirect_uri: uri, scope: scopes }).toString();
 		console.info("Please click the link to login to Spotify in the browser\n");
 		console.info(spotifyUrl + "\n");
 		const authUrl = await getLocalhostUrl((new URL(uri).port) || 3000);
@@ -109,9 +102,7 @@ export const Spotify = class Spotify {
 				"Content-type": "application/x-www-form-urlencoded",
 				"Authorization":
         "Basic " +
-        Buffer.from(this.id + ":" + this.secret).toString(
-        	"base64",
-        ),
+        Buffer.from(this.id + ":" + this.secret).toString("base64"),
 			},
 			body:tokenRequestBody.toString(),
 		});
@@ -121,6 +112,7 @@ export const Spotify = class Spotify {
 	/**
    * It takes a url, gets an access token, and then makes a request to the url with the access token.
    * You can use <code>async/await</code> to make it easier to read.
+   * @private
    * @async
    * @param {String} url - The url you want to request.
    * @returns The response body.

@@ -1,6 +1,7 @@
 /**
  * It takes a string as an argument, and returns the same string wrapped in ANSI escape codes that make
  * the string yellow
+ * @private
  * @param msg - The message to be printed.
  */
 
@@ -9,6 +10,7 @@ export const yellow = (msg) =>
 
 /**
  * It takes a string and returns a string with the ANSI escape code for red text
+ * @private
  * @param msg - The message to be printed.
  */
 export const red = (msg) =>

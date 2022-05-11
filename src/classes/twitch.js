@@ -37,6 +37,7 @@ export const Twitch = class Twitch {
 	/**
     * It takes a URL, gets an access token, and then makes a GET request to the URL with the access
     * token.
+	* @private
     * @async
     * @param {String} url - The URL of the API endpoint you want to access.
     * @returns The data from the API call.

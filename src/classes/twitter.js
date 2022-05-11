@@ -12,6 +12,7 @@ export const Twitter = class Twitter {
 	/**
     * It makes a request to the url, and if the response is ok, it returns the body data, otherwise it
     * throws an error.
+	* @private
     * @async
     * @param {String} url - The url you want to send the request to.
     * @returns The data from the API.

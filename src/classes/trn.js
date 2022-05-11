@@ -11,6 +11,7 @@ export const TRN = class TRN {
 	}
 	/**
      * It takes a URL, makes a GET request to it, and returns the body of the response
+	 * @private
      * @async
      * @param url - The URL to send the request to.
      * @returns The response from the API.
