@@ -83,7 +83,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Statisfy</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1589393" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=3735852><div class="accordion-heading child"><a href="Spotify.html">Spotify</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Spotify.html#access_token">access_token</a></li><li data-type='method'><a href="Spotify.html#getPlaylist">getPlaylist</a></li><li data-type='method'><a href="Spotify.html#oauth">oauth</a></li><li data-type='method'><a href="Spotify.html#top">top</a></li></ul></li><li class="accordion collapsed child" id=6392401><div class="accordion-heading child"><a href="TRN.html">TRN</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TRN.html#ApexLegends">ApexLegends</a></li><li data-type='method'><a href="TRN.html#Fortnite">Fortnite</a></li></ul></li><li class="accordion collapsed child" id=2052577><div class="accordion-heading child"><a href="Twitch.html">Twitch</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Twitch.html#getChannelInfo">getChannelInfo</a></li><li data-type='method'><a href="Twitch.html#getToken">getToken</a></li><li data-type='method'><a href="Twitch.html#getUserByID">getUserByID</a></li><li data-type='method'><a href="Twitch.html#getUserByName">getUserByName</a></li><li data-type='method'><a href="Twitch.html#searchChannels">searchChannels</a></li></ul></li><li class="accordion collapsed child" id=6979612><div class="accordion-heading child"><a href="Twitter.html">Twitter</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Twitter.html#UserLookupByName">UserLookupByName</a></li></ul></li></ul> </div><div class="accordion collapsed" id="9653462" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#exit">exit</a></li><li class="accordion-list" id=""><a href="global.html#npm">npm</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Statisfy</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="3848686" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=9509866><div class="accordion-heading child"><a href="Spotify.html">Spotify</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Spotify.html#access_token">access_token</a></li><li data-type='method'><a href="Spotify.html#getPlaylist">getPlaylist</a></li><li data-type='method'><a href="Spotify.html#oauth">oauth</a></li><li data-type='method'><a href="Spotify.html#top">top</a></li></ul></li><li class="accordion-list" id=""><a href="TikTok.html">TikTok</a></li><li class="accordion collapsed child" id=8215322><div class="accordion-heading child"><a href="TRN.html">TRN</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="TRN.html#ApexLegends">ApexLegends</a></li><li data-type='method'><a href="TRN.html#Fortnite">Fortnite</a></li></ul></li><li class="accordion collapsed child" id=515957><div class="accordion-heading child"><a href="Twitch.html">Twitch</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Twitch.html#getChannelInfo">getChannelInfo</a></li><li data-type='method'><a href="Twitch.html#getToken">getToken</a></li><li data-type='method'><a href="Twitch.html#getUserByID">getUserByID</a></li><li data-type='method'><a href="Twitch.html#getUserByName">getUserByName</a></li><li data-type='method'><a href="Twitch.html#searchChannels">searchChannels</a></li></ul></li><li class="accordion collapsed child" id=4400069><div class="accordion-heading child"><a href="Twitter.html">Twitter</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="Twitter.html#UserLookupByName">UserLookupByName</a></li></ul></li></ul> </div><div class="accordion collapsed" id="3239363" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#exit">exit</a></li><li class="accordion-list" id=""><a href="global.html#npm">npm</a></li></ul> </div>
       
 
     </nav>
@@ -112,6 +112,8 @@
             <pre class="prettyprint source linenums"><code>import fetch from "node-fetch";
 import http from "http";
 import { exit } from "../utils.js";
+import * as config from "#root/config.json";
+import { MongoClient, ServerApiVersion } from "mongodb";
 /**
  * @class
  * @classdec Spotify Class, which handles all relevant statistical endpoints from the Spotify API
@@ -122,6 +124,24 @@ export const Spotify = class Spotify {
 	constructor({ client_id, client_secret }) {
 		this.id = client_id;
 		this.secret = client_secret;
+		this.client = new MongoClient(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+		this.db = this.client.db("StatisfyDB").collection("SpotifyNPM");
+	}
+
+	async DatabaseManager() {
+		const instance = await this.db.find({ client_id: this.id, client_secret:this.secret }).toArray();
+		if(instance.length === 0) {
+			this.oauth_token = this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
+			return this.oauth_token;
+		}
+		else if (instance[0].expires_in &lt; Date.now()) {
+			this.oauth_token = this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
+			return this.oauth_token;
+		}
+		else {
+			this.oauth_token = instance[0].oauth_token.access_token;
+			return this.oauth_token;
+		}
 	}
 
 	/**
@@ -184,16 +204,9 @@ export const Spotify = class Spotify {
 		/* Getting the access token. */
 		const state = Math.random().toString(36).slice(2);
 		const spotifyUrl =
-      "https://accounts.spotify.com/authorize?" +
-      new URLSearchParams({
-      	response_type: "code",
-      	show_dialog: "true",
-      	state,
-      	client_id: this.id,
-      	redirect_uri: uri,
-      	scope: scopes,
-      }).toString();
-		console.info("Please click the link to login to Spotify in the browser\n");
+        "https://accounts.spotify.com/authorize?" +
+        new URLSearchParams({ response_type: "code", show_dialog: "true",	state, client_id: this.id, redirect_uri: uri, scope: scopes }).toString();
+		console.info("You appear to be using Statisfy for the first time.\nPlease click the link to login to Spotify in the browser. You will not have to do this again.\n");
 		console.info(spotifyUrl + "\n");
 		const authUrl = await getLocalhostUrl((new URL(uri).port) || 3000);
 		const params = new URLSearchParams(authUrl);
@@ -220,13 +233,14 @@ export const Spotify = class Spotify {
 				"Content-type": "application/x-www-form-urlencoded",
 				"Authorization":
         "Basic " +
-        Buffer.from(this.id + ":" + this.secret).toString(
-        	"base64",
-        ),
+        Buffer.from(this.id + ":" + this.secret).toString("base64"),
 			},
 			body:tokenRequestBody.toString(),
 		});
 		const body = await res.json();
+		const date = Date.now();
+		const expire_time = date + (body.expires_in * 1000);
+		await this.db.insertOne({ client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
 		return body.access_token;
 	}
 	/**
@@ -261,7 +275,7 @@ export const Spotify = class Spotify {
  * @returns An array of objects.
  */
 	async top({ time, type, limit }) {
-		const token = await this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
+		const token = await this.DatabaseManager();
 		const res = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${time}&amp;limit=${limit}&amp;offset=0`, {
 			headers:{
 				"Authorization":`Bearer ${token}`,
@@ -310,7 +324,7 @@ export const Spotify = class Spotify {
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"Spotify","link":"<a href=\"Spotify.html\">Spotify</a>"},{"title":"Spotify#access_token","link":"<a href=\"Spotify.html#access_token\">Spotify &rtrif; access_token</a>"},{"title":"Spotify#getPlaylist","link":"<a href=\"Spotify.html#getPlaylist\">Spotify &rtrif; getPlaylist</a>"},{"title":"Spotify#oauth","link":"<a href=\"Spotify.html#oauth\">Spotify &rtrif; oauth</a>"},{"title":"Spotify#top","link":"<a href=\"Spotify.html#top\">Spotify &rtrif; top</a>"},{"title":"TRN","link":"<a href=\"TRN.html\">TRN</a>"},{"title":"TRN#ApexLegends","link":"<a href=\"TRN.html#ApexLegends\">TRN &rtrif; ApexLegends</a>"},{"title":"TRN#Fortnite","link":"<a href=\"TRN.html#Fortnite\">TRN &rtrif; Fortnite</a>"},{"title":"Twitch","link":"<a href=\"Twitch.html\">Twitch</a>"},{"title":"Twitch#getChannelInfo","link":"<a href=\"Twitch.html#getChannelInfo\">Twitch &rtrif; getChannelInfo</a>"},{"title":"Twitch#getToken","link":"<a href=\"Twitch.html#getToken\">Twitch &rtrif; getToken</a>"},{"title":"Twitch#getUserByID","link":"<a href=\"Twitch.html#getUserByID\">Twitch &rtrif; getUserByID</a>"},{"title":"Twitch#getUserByName","link":"<a href=\"Twitch.html#getUserByName\">Twitch &rtrif; getUserByName</a>"},{"title":"Twitch#searchChannels","link":"<a href=\"Twitch.html#searchChannels\">Twitch &rtrif; searchChannels</a>"},{"title":"Twitter","link":"<a href=\"Twitter.html\">Twitter</a>"},{"title":"Twitter#UserLookupByName","link":"<a href=\"Twitter.html#UserLookupByName\">Twitter &rtrif; UserLookupByName</a>"},{"title":"exit","link":"<a href=\"global.html#exit\">exit</a>"},{"title":"npm","link":"<a href=\"global.html#npm\">npm</a>"}];
+        var list = [{"title":"Spotify","link":"<a href=\"Spotify.html\">Spotify</a>"},{"title":"Spotify#access_token","link":"<a href=\"Spotify.html#access_token\">Spotify &rtrif; access_token</a>"},{"title":"Spotify#getPlaylist","link":"<a href=\"Spotify.html#getPlaylist\">Spotify &rtrif; getPlaylist</a>"},{"title":"Spotify#oauth","link":"<a href=\"Spotify.html#oauth\">Spotify &rtrif; oauth</a>"},{"title":"Spotify#top","link":"<a href=\"Spotify.html#top\">Spotify &rtrif; top</a>"},{"title":"TikTok","link":"<a href=\"TikTok.html\">TikTok</a>"},{"title":"TRN","link":"<a href=\"TRN.html\">TRN</a>"},{"title":"TRN#ApexLegends","link":"<a href=\"TRN.html#ApexLegends\">TRN &rtrif; ApexLegends</a>"},{"title":"TRN#Fortnite","link":"<a href=\"TRN.html#Fortnite\">TRN &rtrif; Fortnite</a>"},{"title":"Twitch","link":"<a href=\"Twitch.html\">Twitch</a>"},{"title":"Twitch#getChannelInfo","link":"<a href=\"Twitch.html#getChannelInfo\">Twitch &rtrif; getChannelInfo</a>"},{"title":"Twitch#getToken","link":"<a href=\"Twitch.html#getToken\">Twitch &rtrif; getToken</a>"},{"title":"Twitch#getUserByID","link":"<a href=\"Twitch.html#getUserByID\">Twitch &rtrif; getUserByID</a>"},{"title":"Twitch#getUserByName","link":"<a href=\"Twitch.html#getUserByName\">Twitch &rtrif; getUserByName</a>"},{"title":"Twitch#searchChannels","link":"<a href=\"Twitch.html#searchChannels\">Twitch &rtrif; searchChannels</a>"},{"title":"Twitter","link":"<a href=\"Twitter.html\">Twitter</a>"},{"title":"Twitter#UserLookupByName","link":"<a href=\"Twitter.html#UserLookupByName\">Twitter &rtrif; UserLookupByName</a>"},{"title":"exit","link":"<a href=\"global.html#exit\">exit</a>"},{"title":"npm","link":"<a href=\"global.html#npm\">npm</a>"}];
         var options = 
           setupSearch(list, options)
       </script>

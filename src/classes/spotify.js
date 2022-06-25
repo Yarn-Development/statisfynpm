@@ -1,6 +1,8 @@
 import fetch from "node-fetch";
 import http from "http";
 import { exit } from "../utils.js";
+import * as config from "#root/config.json";
+import { MongoClient, ServerApiVersion } from "mongodb";
 /**
  * @class
  * @classdec Spotify Class, which handles all relevant statistical endpoints from the Spotify API
@@ -11,6 +13,24 @@ export const Spotify = class Spotify {
 	constructor({ client_id, client_secret }) {
 		this.id = client_id;
 		this.secret = client_secret;
+		this.client = new MongoClient(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+		this.db = this.client.db("StatisfyDB").collection("SpotifyNPM");
+	}
+
+	async DatabaseManager() {
+		const instance = await this.db.find({ client_id: this.id, client_secret:this.secret }).toArray();
+		if(instance.length === 0) {
+			this.oauth_token = this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
+			return this.oauth_token;
+		}
+		else if (instance[0].expires_in < Date.now()) {
+			this.oauth_token = this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
+			return this.oauth_token;
+		}
+		else {
+			this.oauth_token = instance[0].oauth_token.access_token;
+			return this.oauth_token;
+		}
 	}
 
 	/**
@@ -75,7 +95,7 @@ export const Spotify = class Spotify {
 		const spotifyUrl =
         "https://accounts.spotify.com/authorize?" +
         new URLSearchParams({ response_type: "code", show_dialog: "true",	state, client_id: this.id, redirect_uri: uri, scope: scopes }).toString();
-		console.info("Please click the link to login to Spotify in the browser\n");
+		console.info("You appear to be using Statisfy for the first time.\nPlease click the link to login to Spotify in the browser. You will not have to do this again.\n");
 		console.info(spotifyUrl + "\n");
 		const authUrl = await getLocalhostUrl((new URL(uri).port) || 3000);
 		const params = new URLSearchParams(authUrl);
@@ -107,6 +127,9 @@ export const Spotify = class Spotify {
 			body:tokenRequestBody.toString(),
 		});
 		const body = await res.json();
+		const date = Date.now();
+		const expire_time = date + (body.expires_in * 1000);
+		await this.db.updateOne({ client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
 		return body.access_token;
 	}
 	/**
@@ -133,6 +156,35 @@ export const Spotify = class Spotify {
 		}
 	}
 	/**
+	 * It takes the refresh token and sends it to the Spotify API to get a new access token
+	 * @async
+	 * @returns The access token.
+	 */
+	async refresh_token() {
+		const params = new URLSearchParams();
+		params.append("grant_type", "refresh_token");
+		params.append("refresh_token", this.oauth_token.refresh_token);
+		const message = (Buffer.from(`${this.id}:${this.secret}`).toString("base64"));
+		const res = await fetch("https://accounts.spotify.com/api/token", {
+			method:"POST",
+			body: params,
+			headers:{
+				"Authorization":`Basic ${message}`,
+			},
+		});
+		const body = await res.json();
+		if(res.ok) {
+			const date = Date.now();
+			const expire_time = date + (body.expires_in * 1000);
+			await this.db.insertOne({ client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
+			return body.access_token;
+		}
+		else {
+			console.log(body);
+			exit(`[Statisfy] ${body.status} ERROR: ${body.error} - ${body.message}`);
+		}
+	}
+	/**
  * It gets the top tracks/artists from the user's account
  * @async
  * @param {String} time Period of time to fetch top stats for: short_term(4 weeks), medium_term(6 months) or long_term(lifetime)
@@ -141,7 +193,7 @@ export const Spotify = class Spotify {
  * @returns An array of objects.
  */
 	async top({ time, type, limit }) {
-		const token = await this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
+		const token = await this.DatabaseManager();
 		const res = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${time}&limit=${limit}&offset=0`, {
 			headers:{
 				"Authorization":`Bearer ${token}`,

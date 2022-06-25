@@ -3,12 +3,17 @@
   "version": "1.1.8",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
   "main": "./dist/index.js",
+  "bin":"./test/index.js",
   "scripts": {
     "test": "node ./test/index.js",
     "build": "babel src --out-dir dist",
     "format": "eslint ./src/ --fix",
     "docs": "jsdoc --configure jsdoc.conf.json --verbose",
-    "start": "npm run docs && npm run build && npm link && npm link statisfy && npm run test"
+    "alias":"node module_alias.js",
+    "start": "yarn run docs && yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test"
+  },
+  "_moduleAliases": {
+    "#root": "./src"
   },
   "repository": {
     "type": "git",
@@ -33,7 +38,8 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "clean-jsdoc-theme": "^3.3.4",
-    "node-fetch": "^2.6.1",
+    "mongodb": "^4.7.0",
+    "node-fetch": "^2.6.7",
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {

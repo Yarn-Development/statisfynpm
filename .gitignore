@@ -2,3 +2,5 @@ node_modules/
 src/config.json
 dist
 .vscode/
+module_alias.js
+src/classes/tiktok.js

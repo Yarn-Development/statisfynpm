@@ -3,6 +3,7 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/min/statisfy?logo=npm)
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/statisfy?logo=npm)
 ![npms.io (quality)](https://img.shields.io/npms-io/maintenance-score/statisfy?logo=npm)
+[![Coverage Status](https://coveralls.io/repos/github/Yarn-Development/statisfynpm/badge.svg?branch=master)](https://coveralls.io/github/Yarn-Development/statisfynpm?branch=master)
 &nbsp;
 ### Get statistics from all of your favourite social media sites, games and more!
 &nbsp;

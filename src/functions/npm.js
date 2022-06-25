@@ -11,11 +11,11 @@ import "regenerator-runtime/runtime";
 export const npm = async function npm(pkg) {
 	try {
 		if(!pkg) return exit("[Statisfy] ERROR: Package not provided.");
-		const response = await fetch("https://api.npms.io/v2/search?q=" + pkg).then(
+		const response = await fetch("https://api.npms.io/v2/package/" + pkg).then(
 			(res) => res.json(),
 		);
 		if(!response) return console.log("[Statisfy] ERROR: Failed to find package from npm. ");
-		return response.results[0].package;
+		return response;
 	}
 	catch(err) {
 		console.log(`[Statisfy] ERROR: ${err}`);
