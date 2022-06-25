@@ -97,7 +97,7 @@ export const Spotify = class Spotify {
         new URLSearchParams({ response_type: "code", show_dialog: "true",	state, client_id: this.id, redirect_uri: uri, scope: scopes }).toString();
 		console.info("You appear to be using Statisfy for the first time.\nPlease click the link to login to Spotify in the browser. You will not have to do this again.\n");
 		console.info(spotifyUrl + "\n");
-		const authUrl = await getLocalhostUrl((new URL(uri).port) || 3000);
+		const authUrl = await getLocalhostUrl((new URL(uri).port) || 8888);
 		const params = new URLSearchParams(authUrl);
 		const receivedCode = params.get("code");
 		const receivedState = params.get("state");
