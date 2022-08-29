@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 import http from "http";
 import { exit } from "../utils.js";
-import * as config from "#root/config.json";
 import { MongoClient, ServerApiVersion } from "mongodb";
 /**
  * @class
@@ -13,7 +12,7 @@ export const Spotify = class Spotify {
 	constructor({ client_id, client_secret }) {
 		this.id = client_id;
 		this.secret = client_secret;
-		this.client = new MongoClient(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+		this.client = new MongoClient("mongodb+srv://buh:buhie@cluster0.adekj.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 		this.db = this.client.db("StatisfyDB").collection("SpotifyNPM");
 	}
 
@@ -226,8 +225,11 @@ export const Spotify = class Spotify {
 	 * @returns The search function returns the body of the response.
 	 */
 	async search({ query, type, limit }) {
+		const formattedQuery = query.replace(/ /g, "%20");
+		console.log(formattedQuery);
 		const token = await this.access_token();
-		const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${type}&limit=${limit}`, {
+		console.log(token);
+		const res = await fetch(`https://api.spotify.com/v1/search?q=${formattedQuery}&type=${type}&limit=${limit}&market=GB`, {
 			headers:{
 				"Authorization":`Bearer ${token}`,
 			},

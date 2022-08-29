@@ -180,15 +180,16 @@ async function main() {
 					const search = await question("Enter Search Term: ", console.log);
 					let type = await question("Enter Type:\n[01]: Tracks\n[02]: Artists\n[03]: Albums", console.log);
 					if(type == "1" || type == "01") {
-						type = "tracks";
+						type = "track";
 					}
 					else if(type == "2" || type == "02") {
-						type = "artists";
+						type = "artist";
 					}
 					else if(type == "3" || type == "03") {
-						type = "albums";
+						type = "album";
 					}
-					console.log(await spotify.search({ search:search, type:type }));
+					console.log(search);
+					console.log(await spotify.search({ query:search, type:type, limit:5 }));
 				}
 			}
 			catch(err) {
