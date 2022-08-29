@@ -217,6 +217,14 @@ export const Spotify = class Spotify {
 		const data = await this.req(`https://api.spotify.com/v1/playlists/${playlist}`);
 		return data;
 	}
+	/**
+	 * It searches for a song, artist, album, or playlist
+	 * @async
+	 * @param {String} query - The query you want to search for.
+	 * @param {String} type - The type of data you want to search for.
+	 * @param {Integer} limit - The amount of results you want to get.
+	 * @returns The search function returns the body of the response.
+	 */
 	async search({ query, type, limit }) {
 		const token = await this.access_token();
 		const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${type}&limit=${limit}`, {

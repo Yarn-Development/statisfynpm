@@ -25,6 +25,7 @@ For remote servers and people who have port 8888 in use, you can use the Oauth f
 ### Functions
 - top
 - getPlaylist
+- Search
 - oauth (If you would prefer to use your access token yourself)
 - More functions to be released in near future
 ### CommonJS Usage
