@@ -126,7 +126,7 @@ async function main() {
 		}
 		else if(opt == "4" || opt == "04") {
 			try {
-				const prompt = await question("Select Option to Statisfy:\n[01]: Playlist Stats\n[02]: Top Tracks [Unavailable for Cloud IDEs]", console.log);
+				const prompt = await question("Select Option to Statisfy:\n[01]: Playlist Stats\n[02]: Top Tracks [Unavailable for Cloud IDEs]\n[03]: Search", console.log);
 				if(prompt == "1" || prompt == "01") {
 					let playlist = await question("Enter Spotify Playlist URL: ", console.log);
 					if(playlist.includes("/playlist/")) {
@@ -175,6 +175,20 @@ async function main() {
 						limit = "50";
 					}
 					console.log(await spotify.top({ time:time, limit:limit, type:type }));
+				}
+				else if(prompt == "3" || prompt == "03") {
+					const search = await question("Enter Search Term: ", console.log);
+					let type = await question("Enter Type:\n[01]: Tracks\n[02]: Artists\n[03]: Albums", console.log);
+					if(type == "1" || type == "01") {
+						type = "tracks";
+					}
+					else if(type == "2" || type == "02") {
+						type = "artists";
+					}
+					else if(type == "3" || type == "03") {
+						type = "albums";
+					}
+					console.log(await spotify.search({ search:search, type:type }));
 				}
 			}
 			catch(err) {

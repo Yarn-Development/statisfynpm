@@ -217,4 +217,19 @@ export const Spotify = class Spotify {
 		const data = await this.req(`https://api.spotify.com/v1/playlists/${playlist}`);
 		return data;
 	}
+	async search({ query, type, limit }) {
+		const token = await this.access_token();
+		const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${type}&limit=${limit}`, {
+			headers:{
+				"Authorization":`Bearer ${token}`,
+			},
+		});
+		const body = await res.json();
+		if(res.ok) {
+			return body;
+		}
+		else {
+			exit(`[Statisfy] ${body.status} ERROR: ${body.error} -  ${body.message}`, "red");
+		}
+	}
 };

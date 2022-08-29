@@ -1,15 +1,15 @@
 {
   "name": "statisfy",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
   "main": "./dist/index.js",
-  "bin":"./test/index.js",
+  "bin": "./test/index.js",
   "scripts": {
     "test": "node ./test/index.js",
     "build": "babel src --out-dir dist",
     "format": "eslint ./src/ --fix",
     "docs": "jsdoc --configure jsdoc.conf.json --verbose",
-    "alias":"node module_alias.js",
+    "alias": "node module_alias.js",
     "start": "yarn run docs && yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test"
   },
   "_moduleAliases": {
@@ -38,7 +38,7 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "clean-jsdoc-theme": "^3.3.4",
-    "mongodb": "^4.7.0",
+    "mongodb": "^4.9.0",
     "node-fetch": "^2.6.7",
     "regenerator-runtime": "^0.13.9"
   },
