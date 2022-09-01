@@ -31,7 +31,7 @@
 
 
     <title>
-      Spotify
+      YouTube
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        Spotify
+        YouTube
       </h1>
       
 
@@ -115,10 +115,12 @@
         
         <h2>
         
-        Spotify
+        YouTube
         
         </h2>
         
+        
+            <div class="class-description">Handler for Youtube Channel and Video Statistics.</div>
         
     
 </header>
@@ -130,10 +132,12 @@
         
 
     
+        <h2>Constructor</h2>
+    
 
-    <h4 class="name" id="Spotify">
-        <a href="#Spotify">#</a>
-        <span class="type-signature"></span>new Spotify<span class="signature">(client_id, client_secret)</span><span class="type-signature"></span>
+    <h4 class="name" id="YouTube">
+        <a href="#YouTube">#</a>
+        <span class="type-signature"></span>new YouTube<span class="signature">()</span><span class="type-signature"></span>
     </h4>
 
     
@@ -147,80 +151,6 @@
 
 
 
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>client_id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Spotify client ID</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>client_secret</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Spotify client secret</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
 
 
 
@@ -258,7 +188,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line11">line 11</a>
+                <a href="classes_youtube.js.html">classes/youtube.js</a>, <a href="classes_youtube.js.html#line8">line 8</a>
             </li></ul></dd>
         </div>
     
@@ -310,9 +240,9 @@
 
     
 
-    <h4 class="name" id="access_token">
-        <a href="#access_token">#</a>
-        <span class="type-signature">(async) </span>access_token<span class="signature">()</span><span class="type-signature"></span>
+    <h4 class="name" id="channel">
+        <a href="#channel">#</a>
+        <span class="type-signature">(async) </span>channel<span class="signature">(channelID)</span><span class="type-signature"></span>
     </h4>
 
     
@@ -320,111 +250,7 @@
 
 
     <div class="description">
-        It takes the client id and secret, encodes them into base64, and sends them to the Spotify API toget an access token.
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line41">line 41</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    The access token is being returned.
-</div>
-
-
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getPlaylist">
-        <a href="#getPlaylist">#</a>
-        <span class="type-signature">(async) </span>getPlaylist<span class="signature">(playlist)</span><span class="type-signature"></span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        It takes a playlist ID and returns the playlist's data.
+        It takes in a channel ID and returns the data from the API.
     </div>
 
 
@@ -461,7 +287,7 @@
 
         <tr>
             
-                <td class="name"><code>playlist</code></td>
+                <td class="name"><code>channelID</code></td>
             
 
             <td class="type">
@@ -477,7 +303,7 @@
 
             
 
-            <td class="description last">The Spotify ID of the playlist you want to get.</td>
+            <td class="description last">The ID of the channel to retrieve stats from</td>
         </tr>
 
     
@@ -522,7 +348,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line215">line 215</a>
+                <a href="classes_youtube.js.html">classes/youtube.js</a>, <a href="classes_youtube.js.html#line60">line 60</a>
             </li></ul></dd>
         </div>
     
@@ -553,7 +379,7 @@
         
             
 <div class="param-desc">
-    The data from the request.
+    The data object from the response.
 </div>
 
 
@@ -563,20 +389,35 @@
 
 
 
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>const data = await Youtube.channel({ channelID: "UC_x5XG1OV2P6uZZ5FSM9TQA" });console.log(data.statistics.subscriberCount);// => "1,000,000"console.log(data.statistics.videoCount);// => "100"console.log(data.statistics.viewCount);// => "1,000,000,000"console.log(data.statistics.commentCount);// => "1,000,000"console.log(data.statistics.hiddenSubscriberCount);// => "0"console.log(data.statistics.hiddenViewCount);// => "0"console.log(data.statistics.hiddenCommentCount);// => "0"console.log(data.statistics.hiddenVideoCount);// => "0"</code></pre>
+    
+    
+    </div>
+
+    </div>
+
 
         
             
 
     
 
-    <h4 class="name" id="oauth">
-        <a href="#oauth">#</a>
-        <span class="type-signature">(async) </span>oauth<span class="signature">(scopes, uri)</span><span class="type-signature"></span>
+    <h4 class="name" id="playlist">
+        <a href="#playlist">#</a>
+        <span class="type-signature">(async) </span>playlist<span class="signature">(playlistID)</span><span class="type-signature"></span>
     </h4>
 
     
 
 
+
+    <div class="description">
+        It takes in a playlist ID and returns the data from the API.
+    </div>
 
 
 
@@ -612,7 +453,7 @@
 
         <tr>
             
-                <td class="name"><code>scopes</code></td>
+                <td class="name"><code>playlistID</code></td>
             
 
             <td class="type">
@@ -628,30 +469,7 @@
 
             
 
-            <td class="description last">Scopes required to authenticate</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>uri</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Redirect URL to callback following authentication</td>
+            <td class="description last">The ID of the playlist to retrieve stats from</td>
         </tr>
 
     
@@ -696,7 +514,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line67">line 67</a>
+                <a href="classes_youtube.js.html">classes/youtube.js</a>, <a href="classes_youtube.js.html#line110">line 110</a>
             </li></ul></dd>
         </div>
     
@@ -727,7 +545,7 @@
         
             
 <div class="param-desc">
-    Access Token
+    The data object from the response.
 </div>
 
 
@@ -737,32 +555,90 @@
 
 
 
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>const data = await YouTube.playlist({ playlistID: "UC_x5XG1OV2P6uZZ5FSM9TQA" });console.log(data.statistics.viewCount);// => "1,000,000,000"console.log(data.statistics.likeCount);// => "1,000,000"console.log(data.statistics.dislikeCount);// => "1,000,000"</code></pre>
+    
+    
+    </div>
+
+    </div>
+
 
         
             
 
     
 
-    <h4 class="name" id="refresh_token">
-        <a href="#refresh_token">#</a>
-        <span class="type-signature">(async) </span>refresh_token<span class="signature">()</span><span class="type-signature"></span>
+    <h4 class="name" id="req">
+        <a href="#req">#</a>
+        <span class="type-signature">(async) </span>req<span class="signature">(url)</span><span class="type-signature"></span>
     </h4>
 
     
 
 
 
-    <div class="description">
-        It takes the refresh token and sends it to the Spotify API to get a new access token
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The URL of the request to retrieve data from.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -800,7 +676,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line162">line 162</a>
+                <a href="classes_youtube.js.html">classes/youtube.js</a>, <a href="classes_youtube.js.html#line18">line 18</a>
             </li></ul></dd>
         </div>
     
@@ -831,7 +707,7 @@
         
             
 <div class="param-desc">
-    The access token.
+    The data object from the response.
 </div>
 
 
@@ -849,7 +725,7 @@
 
     <h4 class="name" id="search">
         <a href="#search">#</a>
-        <span class="type-signature">(async) </span>search<span class="signature">(query, type, limit)</span><span class="type-signature"></span>
+        <span class="type-signature">(async) </span>search<span class="signature">(query)</span><span class="type-signature"></span>
     </h4>
 
     
@@ -857,7 +733,7 @@
 
 
     <div class="description">
-        It searches for a song, artist, album, or playlist
+        It takes in a query and searches for a corresponding video.
     </div>
 
 
@@ -910,53 +786,7 @@
 
             
 
-            <td class="description last">The query you want to search for.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The type of data you want to search for.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>limit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Integer</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The amount of results you want to get.</td>
+            <td class="description last">The query to search for.</td>
         </tr>
 
     
@@ -1001,7 +831,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line227">line 227</a>
+                <a href="classes_youtube.js.html">classes/youtube.js</a>, <a href="classes_youtube.js.html#line128">line 128</a>
             </li></ul></dd>
         </div>
     
@@ -1032,7 +862,7 @@
         
             
 <div class="param-desc">
-    The search function returns the body of the response.
+    The data object from the response.
 </div>
 
 
@@ -1042,15 +872,26 @@
 
 
 
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>const data = await YouTube.search({ query: "The Beatles" });console.log(data.items[0].statistics.viewCount);// => "1,000,000,000"console.log(data.items[0].statistics.likeCount);// => "1,000,000"console.log(data.items[0].statistics.dislikeCount);// => "1,000,000"</code></pre>
+    
+    
+    </div>
+
+    </div>
+
 
         
             
 
     
 
-    <h4 class="name" id="top">
-        <a href="#top">#</a>
-        <span class="type-signature">(async) </span>top<span class="signature">(time, type, limit)</span><span class="type-signature"></span>
+    <h4 class="name" id="video">
+        <a href="#video">#</a>
+        <span class="type-signature">(async) </span>video<span class="signature">(videoID)</span><span class="type-signature"></span>
     </h4>
 
     
@@ -1058,7 +899,7 @@
 
 
     <div class="description">
-        It gets the top tracks/artists from the user's account
+        It takes in a video ID and returns the data from the API.
     </div>
 
 
@@ -1095,7 +936,7 @@
 
         <tr>
             
-                <td class="name"><code>time</code></td>
+                <td class="name"><code>videoID</code></td>
             
 
             <td class="type">
@@ -1111,53 +952,7 @@
 
             
 
-            <td class="description last">Period of time to fetch top stats for: short_term(4 weeks), medium_term(6 months) or long_term(lifetime)</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Type of Data fetched: Either artists or tracks</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>limit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Integer</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Amount of top artists/tracks to be fetched</td>
+            <td class="description last">The ID of the video to retrieve stats from</td>
         </tr>
 
     
@@ -1202,7 +997,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line194">line 194</a>
+                <a href="classes_youtube.js.html">classes/youtube.js</a>, <a href="classes_youtube.js.html#line92">line 92</a>
             </li></ul></dd>
         </div>
     
@@ -1233,7 +1028,7 @@
         
             
 <div class="param-desc">
-    An array of objects.
+    The data object from the response.
 </div>
 
 
@@ -1242,6 +1037,17 @@
     </div>
 
 
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>const data = await Youtube.video({ videoID: "UC_x5XG1OV2P6uZZ5FSM9TQA" });console.log(data.statistics.viewCount);// => "1,000,000,000"console.log(data.statistics.likeCount);// => "1,000,000"console.log(data.statistics.dislikeCount);// => "1,000,000"console.log(data.statistics.favoriteCount);// => "1,000,000"console.log(data.statistics.commentCount);// => "1,000,000"console.log(data.statistics.hiddenViewCount);// => "0"console.log(data.statistics.hiddenLikeCount); // => "0"console.log(data.statistics.hiddenDislikeCount);// => "0"console.log(data.statistics.hiddenFavoriteCount);// => "0"console.log(data.statistics.hiddenCommentCount);// => "0"</code></pre>
+    
+    
+    </div>
+
+    </div>
 
 
         

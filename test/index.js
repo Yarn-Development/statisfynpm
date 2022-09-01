@@ -1,4 +1,4 @@
-const { npm, Twitch, Twitter, TRN, Spotify } = require("statisfy");
+const { npm, Twitch, Twitter, TRN, Spotify, YouTube } = require("statisfy");
 const config = require("../src/config.json");
 const ttv = new Twitch({
 	client_id:config.client_id,
@@ -14,6 +14,9 @@ const spotify = new Spotify({
 	client_id:config.spotifyCID,
 	client_secret:config.spotifyCS,
 });
+const yt = new YouTube({
+	key:config.youtube,
+});
 function question(query) {
 	const readline = require("readline").createInterface({
 		input: process.stdin,
@@ -27,7 +30,7 @@ function question(query) {
 }
 async function main() {
 	try {
-		const opt = await question("Select Statisfy Option:\n[01]: Twitch\n[02]: Twitter\n[03]: TRN\n[04]: Spotify\n[05]: NPM\nChoice: ", console.log);
+		const opt = await question("Select Statisfy Option:\n[01]: Twitch\n[02]: Twitter\n[03]: TRN\n[04]: Spotify\n[05]: NPM\n[06]: YouTube\nChoice: ", console.log);
 		if(opt == "1" || opt == "01") {
 			try {
 				const user = await question("Enter Twitch Username: ", console.log).catch(err => console.error(err));
@@ -178,7 +181,7 @@ async function main() {
 				}
 				else if(prompt == "3" || prompt == "03") {
 					const search = await question("Enter Search Term: ", console.log);
-					let type = await question("Enter Type:\n[01]: Tracks\n[02]: Artists\n[03]: Albums", console.log);
+					let type = await question("Enter Type:\n[01]: Tracks\n[02]: Artists\n[03]: Albums ", console.log);
 					if(type == "1" || type == "01") {
 						type = "track";
 					}
@@ -200,6 +203,19 @@ async function main() {
 			try {
 				const pkg = await question("Enter NPM package to Statisfy: ", console.log);
 				console.log(await npm(pkg));
+			}
+			catch(err) {
+				console.log(err);
+			}
+		}
+		else if(opt == "6" || opt == "06") {
+			try {
+				const method = await question("Enter Method to Statisfy:\n[01]: Search\n[02]: Video\n[03]: Channel\n[04]: Playlist ", console.log);
+				if(method == "1" || method == "01") {
+					const search = await question("Enter Search Term: ", console.log);
+					const limit = await question("Enter Amount of Results to Return: ", console.log);
+					console.log(await yt.search({ query:search, limit:limit }));
+				}
 			}
 			catch(err) {
 				console.log(err);
