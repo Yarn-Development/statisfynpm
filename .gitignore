@@ -4,3 +4,4 @@ dist
 .vscode/
 module_alias.js
 src/classes/tiktok.js
+src/data/creds.sqlite

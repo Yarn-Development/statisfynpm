@@ -1,7 +1,8 @@
 import fetch from "node-fetch";
 import http from "http";
 import { exit } from "../utils.js";
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { QuickDB } from "quick.db";
+
 /**
  * @class
  * @classdec Spotify Class, which handles all relevant statistical endpoints from the Spotify API
@@ -10,24 +11,25 @@ import { MongoClient, ServerApiVersion } from "mongodb";
  */
 export const Spotify = class Spotify {
 	constructor({ client_id, client_secret }) {
+		const db = new QuickDB({ filePath:"./src/data/creds.sqlite" });
 		this.id = client_id;
 		this.secret = client_secret;
-		this.client = new MongoClient("mongodb+srv://buh:buhie@cluster0.adekj.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-		this.db = this.client.db("StatisfyDB").collection("SpotifyNPM");
+		this.db = db;
 	}
 
 	async DatabaseManager() {
-		const instance = await this.db.find({ client_id: this.id, client_secret:this.secret }).toArray();
-		if(instance.length === 0) {
+		const instance = await this.db.get("instance");
+		if(!instance) {
 			this.oauth_token = this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
+
 			return this.oauth_token;
 		}
-		else if (instance[0].expires_in < Date.now()) {
+		else if (instance.expires_in < Date.now()) {
 			this.oauth_token = this.oauth({ scopes:"user-top-read", uri:"http://localhost:8888" });
 			return this.oauth_token;
 		}
 		else {
-			this.oauth_token = instance[0].oauth_token.access_token;
+			this.oauth_token = instance.oauth_token.access_token;
 			return this.oauth_token;
 		}
 	}
@@ -128,7 +130,7 @@ export const Spotify = class Spotify {
 		const body = await res.json();
 		const date = Date.now();
 		const expire_time = date + (body.expires_in * 1000);
-		await this.db.updateOne({ client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
+		await this.db.set("instance", { client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
 		return body.access_token;
 	}
 	/**
@@ -175,7 +177,7 @@ export const Spotify = class Spotify {
 		if(res.ok) {
 			const date = Date.now();
 			const expire_time = date + (body.expires_in * 1000);
-			await this.db.insertOne({ client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
+			await this.db.set("instance", { client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
 			return body.access_token;
 		}
 		else {

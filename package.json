@@ -1,6 +1,6 @@
 {
   "name": "statisfy",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
   "main": "./dist/index.js",
   "bin": "./test/index.js",
@@ -14,10 +14,6 @@
   },
   "_moduleAliases": {
     "#root": "./src"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yarn-Development/statisfynpm.git"
   },
   "keywords": [
     "stats",
@@ -34,10 +30,11 @@
   "homepage": "https://statisfy.js.org",
   "dependencies": {
     "babel-cli": "^6.26.0",
+    "better-sqlite3": "^7.6.2",
     "clean-jsdoc-theme": "^3.3.4",
-    "mongodb": "^4.9.0",
-    "node-fetch": "^2.6.7",
     "core-js": "^3.25.0",
+    "node-fetch": "^2.6.7",
+    "quick.db": "^9.0.6",
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
