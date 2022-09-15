@@ -64,5 +64,23 @@ export const YouTube = class YouTube {
 		});
 		return data.items[0];
 	}
+	/**
+	 * It searches for a video, gets the video ID, and then gets the video's information
+	 * @async
+	 * @param query - The search query
+	 * @returns The video information.
+	 */
+	async getVideoByQuery(query) {
+		const data = await this.search({ type:"video", query:query, limit:1 });
+		const vid_id = data.items[0].id.videoId;
+		const info = await this.req("videos", {
+			body:{
+				"part":"snippet,statistics,contentDetails",
+				"id":vid_id,
+				"maxResults":1,
+			},
+		});
+		return info.items[0];
+	}
 };
 

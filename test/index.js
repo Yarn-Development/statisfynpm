@@ -215,6 +215,7 @@ async function main() {
 					const search = await question("Enter Search Term: ", console.log);
 					const limit = await question("Enter Amount of Results to Return: ", console.log);
 					console.log(await yt.search({ query:search, limit:limit }));
+					console.log(await yt.getVideoByQuery(search));
 				}
 			}
 			catch(err) {
