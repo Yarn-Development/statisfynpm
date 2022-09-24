@@ -9,7 +9,7 @@ import { QuickDB } from "quick.db";
  * @param {String} client_id Spotify client ID
  * @param {String} client_secret Spotify client secret
  */
-export const Spotify = class Spotify {
+export default class Spotify {
 	constructor({ client_id, client_secret }) {
 		const db = new QuickDB({ filePath:"./src/data/creds.sqlite" });
 		this.id = client_id;
@@ -244,4 +244,4 @@ export const Spotify = class Spotify {
 			exit(`[Statisfy] ${body.status} ERROR: ${body.error} -  ${body.message}`, "red");
 		}
 	}
-};
+}

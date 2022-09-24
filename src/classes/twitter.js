@@ -5,7 +5,7 @@ import { exit } from "../utils.js";
  * @classdesc Twitter Class, which handles all relevant statistical endpoints from the Twitter API
  * @param {String} token Twittter Developer Token
  */
-export const Twitter = class Twitter {
+export default class Twitter {
 	constructor({ token }) {
 		this.token = token;
 	}
@@ -43,4 +43,4 @@ export const Twitter = class Twitter {
 		const info = await this.req(`https://api.twitter.com/2/users/by/username/${user}?user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld`);
 		return info;
 	}
-};
+}

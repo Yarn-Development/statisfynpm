@@ -6,7 +6,7 @@ import { exit } from "../utils.js";
  * @param {String} client_id Twitch Client ID from Developer Portal
  * @param {String} client_secret Twitch Client Secret from Developer Portal
  */
-export const Twitch = class Twitch {
+export default class Twitch {
 	constructor({ client_id, client_secret }) {
 		this.client = client_id;
 		this.secret = client_secret;
@@ -114,4 +114,4 @@ export const Twitch = class Twitch {
 		const info = await this.req(`https://api.twitch.tv/helix/search/channels?query=${username}`);
 		return info[0];
 	}
-};
+}

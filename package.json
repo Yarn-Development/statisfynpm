@@ -1,6 +1,6 @@
 {
   "name": "statisfy",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
   "main": "./dist/index.js",
   "bin": "./test/index.js",

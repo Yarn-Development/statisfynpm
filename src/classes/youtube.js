@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import { exit } from "../utils.js";
-export const YouTube = class YouTube {
+export default class YouTube {
 	constructor({ key }) {
 		this.key = key;
 		this.url = "https://www.googleapis.com/youtube/v3/";
@@ -82,5 +82,5 @@ export const YouTube = class YouTube {
 		});
 		return info.items[0];
 	}
-};
+}
 

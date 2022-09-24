@@ -31,7 +31,7 @@
 
 
     <title>
-      functions/npm.js
+      exports
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        functions/npm.js
+        exports
       </h1>
       
 
@@ -106,34 +106,806 @@
 
 
 
+
+<section>
+
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import fetch from "node-fetch";
-import { exit } from "../utils.js";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-/**
- * @function
- * @async
- * @param {String} pkg Package to return data from
- * @returns Statistics &amp; Info of package
-*/
-export const npm = async function npm(pkg) {
-	try {
-		if(!pkg) return exit("[Statisfy] ERROR: Package not provided.");
-		const response = await fetch("https://api.npms.io/v2/package/" + pkg).then(
-			(res) => res.json(),
-		);
-		if(!response) return console.log("[Statisfy] ERROR: Failed to find package from npm. ");
-		return response;
-	}
-	catch(err) {
-		console.log(`[Statisfy] ERROR: ${err}`);
-	}
-};</code></pre>
-        </article>
-    </section>
+        
+        <h2>
+        
+        exports
+        
+        </h2>
+        
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="exports">
+        <a href="#exports">#</a>
+        <span class="type-signature"></span>new exports<span class="signature">(client_id, client_secret)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>client_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Spotify client ID</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>client_secret</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Spotify client secret</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_spotify.js.html">classes/spotify.js</a>, <a href="classes_spotify.js.html#line12">line 12</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        exports
+        
+        </h2>
+        
+        
+            <div class="class-description">Handler for game statistics supplied via the Tracker Network API.</div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+        <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="exports">
+        <a href="#exports">#</a>
+        <span class="type-signature"></span>new exports<span class="signature">(key)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Tracker Network Key to authenticate API Requests</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_trn.js.html">classes/trn.js</a>, <a href="classes_trn.js.html#line8">line 8</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        exports
+        
+        </h2>
+        
+        
+            <div class="class-description">Twitch Class, which handles all relevant statistical endpoints from the Twitch API</div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+        <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="exports">
+        <a href="#exports">#</a>
+        <span class="type-signature"></span>new exports<span class="signature">(client_id, client_secret)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>client_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Twitch Client ID from Developer Portal</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>client_secret</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Twitch Client Secret from Developer Portal</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_twitch.js.html">classes/twitch.js</a>, <a href="classes_twitch.js.html#line9">line 9</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        exports
+        
+        </h2>
+        
+        
+            <div class="class-description">Twitter Class, which handles all relevant statistical endpoints from the Twitter API</div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+        <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="exports">
+        <a href="#exports">#</a>
+        <span class="type-signature"></span>new exports<span class="signature">(token)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Twittter Developer Token</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="classes_twitter.js.html">classes/twitter.js</a>, <a href="classes_twitter.js.html#line8">line 8</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
