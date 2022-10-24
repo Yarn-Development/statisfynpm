@@ -1,8 +1,25 @@
 import fetch from "node-fetch";
 import { exit } from "../utils.js";
-export default class YouTube {
-	constructor({ key }) {
-		this.key = key;
+import { URLSearchParams } from "url";
+
+interface YouTubeOptions {
+	key: string;
+}
+interface reqOptions {
+	ext: string;
+	body?: [string, string][];
+}
+interface searchOptions {
+	query: string;
+	type?: string;
+	limit: number;
+}
+
+export const YouTube = class YouTube {
+	key: string;
+	url: string;
+	constructor(options: YouTubeOptions) {
+		this.key = options.key;
 		this.url = "https://www.googleapis.com/youtube/v3/";
 	}
 	/**
@@ -13,18 +30,18 @@ export default class YouTube {
       * @param body - The body of the request.
       * @returns a promise.
       */
-	async req(ext, { body }) {
+	async req(options: reqOptions) {
 		const base_body = {
 			"key":this.key,
 		};
-		const bod = (typeof body === "undefined") ? base_body : Object.assign(base_body, body);
-		const url = `${this.url + ext}?${new URLSearchParams(bod).toString()}`;
+		const bod = (typeof options.body === "undefined") ? base_body : Object.assign(base_body, options.body);
+		const url = `${this.url + options.ext}?${new URLSearchParams(bod).toString()}`;
 		const res = await fetch(url);
-		const info = res.json();
+		const info = await res.json();
 
 		if(res.ok) {return info;}
 		else {
-			exit(`[Statisfy] ERROR: ${info.status} ${info.error} - ${info.message}`);
+			exit(`[Statisfy] ERROR: ${info.status} ${info.error} - ${info.message}`, "red");
 		}
 	}
 	/**
@@ -35,13 +52,13 @@ export default class YouTube {
       * @param limit - The limit of the results.
       * @returns The data is being returned.
       */
-	async search({ type, query, limit }) {
+	async search(options: searchOptions) {
 		const data = this.req("search", {
 			body: {
 				"part":"snippet",
-				"maxResults":limit,
-				"q":query,
-				"type":type ? type : "video,channel,playlist",
+				"maxResults":options.limit,
+				"q":options.query,
+				"type":options.type ? options.type : "video,channel,playlist",
 			},
 		});
 		return data;
@@ -52,7 +69,7 @@ export default class YouTube {
       * @param name - The name of the channel you want to get.
       * @returns The channel object.
       */
-	async getChannelByName(name) {
+	async getChannelByName(name: string) {
 		const searchres = await this.search({ type:"channel", query:name, limit:1 });
 		const id = searchres.items[0].id.channelId;
 
@@ -70,7 +87,7 @@ export default class YouTube {
 	 * @param query - The search query
 	 * @returns The video information.
 	 */
-	async getVideoByQuery(query) {
+	async getVideoByQuery(query: string) {
 		const data = await this.search({ type:"video", query:query, limit:1 });
 		const vid_id = data.items[0].id.videoId;
 		const info = await this.req("videos", {
@@ -82,5 +99,5 @@ export default class YouTube {
 		});
 		return info.items[0];
 	}
-}
+};
 

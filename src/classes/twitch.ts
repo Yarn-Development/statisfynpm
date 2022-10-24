@@ -1,15 +1,22 @@
 import fetch from "node-fetch";
 import { exit } from "../utils.js";
+interface TwitchOptions {
+	clientID: string,
+	clientSecret: string,
+}
 /**
  * @class
  * @classdesc Twitch Class, which handles all relevant statistical endpoints from the Twitch API
  * @param {String} client_id Twitch Client ID from Developer Portal
  * @param {String} client_secret Twitch Client Secret from Developer Portal
  */
-export default class Twitch {
-	constructor({ client_id, client_secret }) {
-		this.client = client_id;
-		this.secret = client_secret;
+export const Twitch = class Twitch {
+	client: string;
+	secret: string;
+
+	constructor(options: TwitchOptions) {
+		this.client = options.clientID;
+		this.secret = options.clientSecret;
 	}
 	/**
     * It gets a token from the Twitch API.
@@ -23,14 +30,14 @@ export default class Twitch {
 		const body = await info.json();
 		if (info.ok) {
 			if(body.access_token == null) {
-				exit("[Statisfy] Token generation error.");
+				exit("[Statisfy] Token generation error.", "red");
 			}
 			else {
 				return body.access_token;
 			}
 		}
 		else {
-			exit(`[Statisfy] ${body.status} ERROR: ${body.error} - ${body.message}`);
+			exit(`[Statisfy] ${body.status} ERROR: ${body.error} - ${body.message}`, "red");
 		}
 
 	}
@@ -42,16 +49,16 @@ export default class Twitch {
     * @param {String} url - The URL of the API endpoint you want to access.
     * @returns The data from the API call.
     */
-	async req(url) {
+	async req(url: string) {
 		const token = await this.getToken();
 		if (token == null) {
-			exit("[Statisfy] ERROR: Access Token generation failed. Please try again.");
+			exit("[Statisfy] ERROR: Access Token generation failed. Please try again.", "red");
 		}
 		if(this.client == null) {
-			exit("[Statisfy] ERROR: Twitch Client ID not provided.");
+			exit("[Statisfy] ERROR: Twitch Client ID not provided.", "red");
 		}
 		else if (this.secret == null) {
-			exit("[Statisfy] ERROR: Twitch Client Secret not provided.");
+			exit("[Statisfy] ERROR: Twitch Client Secret not provided.", "red");
 		}
 		const res = await fetch(url, {
 			method:"GET",
@@ -65,7 +72,7 @@ export default class Twitch {
 			return body.data;
 		}
 		else {
-			exit(`[Statisfy] ${body.status} ERROR: ${body.error} - ${body.message}`);
+			exit(`[Statisfy] ${body.status} ERROR: ${body.error} - ${body.message}`, "red");
 		}
 	}
 
@@ -76,9 +83,9 @@ export default class Twitch {
         * @param {String} username - The username of the user you want to get the info of.
         * @returns The user's information.
         */
-	async getUserByName(username) {
+	async getUserByName(username: string) {
 		if(username == null) {
-			exit("[Statisfy] ERROR: Username not provided.");
+			exit("[Statisfy] ERROR: Username not provided.", "red");
 		}
 		const info = await this.req(`https://api.twitch.tv/helix/users?login=${username.toLowerCase()}`);
 		return info[0];
@@ -89,7 +96,7 @@ export default class Twitch {
  * @param {String} id - The user's ID.
  * @returns An object with the user's information.
  */
-	async getUserByID(id) {
+	async getUserByID(id: string) {
 		const info = await this.req(`https://api.twitch.tv/helix/users?id=${id}`);
 		return info[0];
 	}
@@ -99,7 +106,7 @@ export default class Twitch {
  * @param {String} id - The channel ID of the channel you want to get the info of.
  * @returns An object with the channel info.
  */
-	async getChannelInfo(id) {
+	async getChannelInfo(id: string) {
 		const info = await this.req(`https://api.twitch.tv/helix/channels?broadcaster_id=${id}`);
 		return info[0];
 	}
@@ -110,8 +117,8 @@ export default class Twitch {
  * @param {String} username - The username of the channel you want to get the information of.
  * @returns An object with the channel information.
  */
-	async searchChannels(username) {
+	async searchChannels(username: string) {
 		const info = await this.req(`https://api.twitch.tv/helix/search/channels?query=${username}`);
 		return info[0];
 	}
-}
+};

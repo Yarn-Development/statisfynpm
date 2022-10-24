@@ -1,16 +1,14 @@
 import fetch from "node-fetch";
 import { exit } from "../utils.js";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
 /**
  * @function
  * @async
  * @param {String} pkg Package to return data from
  * @returns Statistics & Info of package
 */
-export const npm = async function npm(pkg) {
+export const npm = async function npm(pkg:string) {
 	try {
-		if(!pkg) return exit("[Statisfy] ERROR: Package not provided.");
+		if(!pkg) return exit("[Statisfy] ERROR: Package not provided.", "red");
 		const response = await fetch("https://api.npms.io/v2/package/" + pkg).then(
 			(res) => res.json(),
 		);

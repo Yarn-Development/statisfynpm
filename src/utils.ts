@@ -5,7 +5,7 @@
  * @param msg - The message to be printed.
  */
 
-export const yellow = (msg) =>
+export const yellow = (msg:string) =>
 	"\u001B[" + 33 + "m" + msg + "\u001B[" + 39 + "m";
 
 /**
@@ -13,7 +13,7 @@ export const yellow = (msg) =>
  * @private
  * @param msg - The message to be printed.
  */
-export const red = (msg) =>
+export const red = (msg:string) =>
 	"\u001B[" + 31 + "m" + msg + "\u001B[" + 39 + "m";
 
 /**
@@ -22,7 +22,7 @@ export const red = (msg) =>
  * @param message - The message to display.
  * @param color - The color of the message.
  */
-export function exit(message, color) {
+export function exit(message:string, color?:string | "red") {
 	if (color === "red") {
 		console.error(red(message));
 	}

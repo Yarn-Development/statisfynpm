@@ -1,13 +1,18 @@
 import fetch from "node-fetch";
 import { exit } from "../utils.js";
+
+interface TwitterOptions {
+	token: string;
+}
 /**
  * @class
  * @classdesc Twitter Class, which handles all relevant statistical endpoints from the Twitter API
  * @param {String} token Twittter Developer Token
  */
-export default class Twitter {
-	constructor({ token }) {
-		this.token = token;
+export const Twitter = class Twitter {
+	token : string;
+	constructor(options: TwitterOptions) {
+		this.token = options.token;
 	}
 	/**
     * It makes a request to the url, and if the response is ok, it returns the body data, otherwise it
@@ -17,7 +22,7 @@ export default class Twitter {
     * @param {String} url - The url you want to send the request to.
     * @returns The data from the API.
     */
-	async req(url) {
+	async req(url: string) {
 		const res = await fetch(url, {
 			method:"GET",
 			headers: {
@@ -29,7 +34,7 @@ export default class Twitter {
 			return body.data;
 		}
 		else {
-			exit(`[Statisfy] ${body.status} ERROR: ${body.error} - ${body.message}`);
+			exit(`[Statisfy] ${body.status} ERROR: ${body.error} - ${body.message}`, "red");
 		}
 	}
 	/**
@@ -39,8 +44,8 @@ export default class Twitter {
  * @param {String} user - The username of the user you want to look up.
  * @returns The user's information.
  */
-	async UserLookupByName(user) {
+	async UserLookupByName(user: string) {
 		const info = await this.req(`https://api.twitter.com/2/users/by/username/${user}?user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld`);
 		return info;
 	}
-}
+};
