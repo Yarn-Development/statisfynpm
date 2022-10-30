@@ -10,14 +10,7 @@ interface SpotifyOptions {
 type Spot = {
 	id?: string;
 	secret?: string;
-	oauth_token?: {
-		access_token?: string;
-		token_type?: string;
-		expires_in?: number;
-		scope?: string;
-		refresh_token?: string;
-	}
-	expires_at?: number;
+	[other: string]: any;
 }
 interface SpotifyToken {
 	scopes: string[];
@@ -53,7 +46,7 @@ export const Spotify = class Spotify {
 	db: QuickDB;
 	oauth_token : Spot;
 	constructor(options: SpotifyOptions) {
-		const db = new QuickDB({ filePath:"./src/data/creds.sqlite" });
+		const db = new QuickDB({ filePath:"../data/creds.sqlite" });
 		const token_obj: Spot = {};
 		this.id = options.clientID;
 		this.secret = options.clientSecret;
@@ -68,7 +61,7 @@ export const Spotify = class Spotify {
 				this.oauth_token = instance;
 			}
 			else {
-				this.oauth_token = instance.oauth_token as Spot;
+				exit("[Statisfy] DatabaseManager: Instance Object failed to fetch.", "red");
 			}
 		}
 		else {
@@ -161,11 +154,9 @@ export const Spotify = class Spotify {
 		}
 
 		console.info("Login successful! Cleaning up...\n");
-		const tokenRequestBody = new URLSearchParams({
-			grant_type: "authorization_code",
-			code: receivedCode,
-			redirect_uri: options.uri,
-		});
+		const tokenRequestBody = new URLSearchParams("grant_type=authorization_code");
+		tokenRequestBody.append("code", receivedCode ? receivedCode : "");
+		tokenRequestBody.append("redirect_uri", options.uri);
 		const body: SpotifyTokenResponse = await fetch("https://accounts.spotify.com/api/token", {
 			method:"POST",
 			headers:{
@@ -212,7 +203,7 @@ export const Spotify = class Spotify {
 	async refresh_token() {
 		const params = new URLSearchParams();
 		params.append("grant_type", "refresh_token");
-		params.append("refresh_token", this.oauth_token.refresh_token);
+		params.append("refresh_token", this.oauth_token.refresh_token || "");
 		const message = (Buffer.from(`${this.id}:${this.secret}`).toString("base64"));
 		const res = await fetch("https://accounts.spotify.com/api/token", {
 			method:"POST",

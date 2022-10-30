@@ -7,7 +7,7 @@ interface YouTubeOptions {
 }
 interface reqOptions {
 	ext: string;
-	body?: [string, string][];
+	body: Record<string, unknown>;
 }
 interface searchOptions {
 	query: string;
@@ -53,7 +53,7 @@ export const YouTube = class YouTube {
       * @returns The data is being returned.
       */
 	async search(options: searchOptions) {
-		const data = this.req("search", {
+		const data = this.req({ ext:"search",
 			body: {
 				"part":"snippet",
 				"maxResults":options.limit,
@@ -73,7 +73,7 @@ export const YouTube = class YouTube {
 		const searchres = await this.search({ type:"channel", query:name, limit:1 });
 		const id = searchres.items[0].id.channelId;
 
-		const data = await this.req("channels", {
+		const data = await this.req({ ext: "channels",
 			body: {
 				"part":"snippet,contentDetails,statistics,brandingSettings",
 				"id":id,
@@ -90,7 +90,7 @@ export const YouTube = class YouTube {
 	async getVideoByQuery(query: string) {
 		const data = await this.search({ type:"video", query:query, limit:1 });
 		const vid_id = data.items[0].id.videoId;
-		const info = await this.req("videos", {
+		const info = await this.req({ ext: "videos",
 			body:{
 				"part":"snippet,statistics,contentDetails",
 				"id":vid_id,

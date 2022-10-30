@@ -4,8 +4,12 @@
             "module": "commonjs",
             "declaration": true,
             "outDir": "./lib",
+            "skipLibCheck": true,
             "strict": true
           },
-          "include": ["src"],
-          "exclude": ["node_modules"]
+          "exclude": ["node_modules/", "lib/"],
+          "typedocOptions": {
+            "entryPoints": ["src/"],
+            "out": "docs"
+        }
 }

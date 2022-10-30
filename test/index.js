@@ -1,6 +1,6 @@
-import { npm, Twitch, Twitter, TRN, Spotify, YouTube } from "../src/index";
-import config from "../src/config.json";
-import question from "../question";
+const { npm, Twitch, Twitter, TRN, Spotify, YouTube } = require("statisfy");
+const config = require("../src/config.json");
+
 const ttv = new Twitch({
 	clientID:config.client_id,
 	clientSecret:config.secret,
@@ -18,6 +18,15 @@ const spotify = new Spotify({
 const yt = new YouTube({
 	key:config.youtube,
 });
+const { createInterface } = require("readline");
+const rl = createInterface({
+	input: process.stdin,
+	output: process.stdout,
+});
+
+const question = (questionText) =>
+	new Promise(resolve => rl.question(questionText, resolve))
+		.finally(() => rl.close());
 
 async function main() {
 	try {
