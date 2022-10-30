@@ -1,0 +1,14 @@
+name: Documentation GEN v2
+on: [workflow_dispatch,push]
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Node sample
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install
+      - run: yarn run docs
