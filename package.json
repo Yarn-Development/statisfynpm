@@ -1,16 +1,17 @@
 {
   "name": "statisfy",
-  "version": "1.1.17",
+  "version": "1.2.0",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
-  "main": "./dist/index.js",
+  "main": "./lib/index.js",
   "bin": "./test/index.js",
   "scripts": {
     "test": "node ./test/index.js",
-    "build": "babel src --out-dir dist",
+    "build": "node clear_lib.js && tsc",
     "format": "eslint ./src/ --fix",
-    "docs": "jsdoc --configure jsdoc.conf.json --verbose",
+    "docs": "typedoc --tsconfig ./tsconfig.json",
     "alias": "node module_alias.js",
-    "start": "yarn run docs && yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test"
+    "start": "yarn run docs && yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test",
+    "prepare": "husky install"
   },
   "_moduleAliases": {
     "#root": "./src"
@@ -29,16 +30,21 @@
   },
   "homepage": "https://statisfy.js.org",
   "dependencies": {
-    "babel-cli": "^6.26.0",
     "better-sqlite3": "^7.6.2",
-    "clean-jsdoc-theme": "^3.3.4",
-    "core-js": "^3.25.0",
     "node-fetch": "^2.6.7",
     "quick.db": "^9.0.6",
-    "regenerator-runtime": "^0.13.9"
+    "typedoc": "^0.23.19"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^8.23.1"
+    "@types/better-sqlite3": "^7.6.2",
+    "@types/node": "^18.8.3",
+    "@types/node-fetch": "^2.6.2",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "eslint": "^8.23.1",
+    "husky": "^8.0.0",
+    "promise-mysql": "^5.2.0",
+    "typedoc-plugin-missing-exports": "^1.0.0",
+    "typescript": "^4.8.4"
   }
 }

@@ -1,7 +1,10 @@
 node_modules/
 src/config.json
-dist
+lib/
 .vscode/
 module_alias.js
 src/classes/tiktok.js
 src/data/creds.sqlite
+clear_lib.js
+yarn.lock
+yarn-error.log
