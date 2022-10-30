@@ -2,7 +2,7 @@ name: Documentation GEN v2
 on: [workflow_dispatch,push]
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Node sample
     steps:
       - uses: actions/checkout@v3
