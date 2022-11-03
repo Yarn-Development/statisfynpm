@@ -16,7 +16,7 @@ jobs:
         run: yarn run docs
       - name: Add CNAME
         run: |
-          cd ${{ env.home}/docs
+          cd ${{ env.home}}/docs
           touch CNAME
           echo statisfy.js.org >> CNAME
       - name: Commit Changes  
