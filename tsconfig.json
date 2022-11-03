@@ -1,6 +1,7 @@
 {
         "compilerOptions": {
             "target": "es5",
+            "lib": ["esnext", "dom"],
             "module": "commonjs",
             "declaration": true,
             "outDir": "./lib",
