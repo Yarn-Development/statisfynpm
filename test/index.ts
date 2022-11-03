@@ -1,5 +1,5 @@
 import { npm, Twitch, Twitter, TRN, Spotify, YouTube } from "../src/index";
-import config from "../src/config.json";
+import * as config from "../src/config.json";
 
 const ttv = new Twitch({
 	clientID:config.client_id,
