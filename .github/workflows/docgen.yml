@@ -15,12 +15,10 @@ jobs:
       - name: Generate Documentation via TypeDoc
         run: yarn run docs
       - name: Add CNAME
-        uses: DamianReeves/write-file-action@master
-        with:
-          path: ${{ env.home}}/docs/CNAME
-          contents: |
-            statisfy.js.org
-          write-mode: append
+        run: |
+        cd ${{ env.home}/docs
+        touch CNAME
+        echo statisfy.js.org >> CNAME
       - name: Commit Changes  
         uses: EndBug/add-and-commit@v9
         with:
