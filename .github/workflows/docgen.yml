@@ -1,9 +1,9 @@
-name: Documentation GEN v2
+name: Documentation Generation
 on: [workflow_dispatch,push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Node sample
+    name: Automatically Generate Documentation
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
