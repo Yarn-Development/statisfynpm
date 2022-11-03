@@ -5,11 +5,17 @@
             "declaration": true,
             "outDir": "./lib",
             "skipLibCheck": true,
-            "strict": true
+            "strict": true,
+            "resolveJsonModule": true,
+            "esModuleInterop": true
           },
-          "exclude": ["node_modules/", "lib/"],
+          "exclude": ["node_modules/", "lib/" ],
+          "paths": {
+            "@root/*": ["src/*"],
+            "@lib/*": ["lib/*"]
+          },
           "typedocOptions": {
-            "entryPoints": ["src/"],
+            "entryPoints": ["./src"],
             "out": "docs"
         }
 }

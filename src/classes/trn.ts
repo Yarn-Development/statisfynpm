@@ -2,8 +2,8 @@ import fetch from "node-fetch";
 import { exit } from "../utils.js";
 
 interface GameOptions {
-		username: string,
-		platform: string,
+		user: any;
+		platform: string;
 }
 /**
  * @class
@@ -40,7 +40,7 @@ export const TRN = class TRN {
 	/**
     * It takes in a username and platform and returns the data from the API.
     * @async
-    * @param {String} username The username of the player
+    * @param {String} user The username of the player
     * @param {String} platform The platform of the player retrieving stats from
     * @returns The data object from the response.
     */
@@ -49,13 +49,13 @@ export const TRN = class TRN {
 		if(!platforms.includes(options.platform)) {
 			exit(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`, "red");
 		}
-		const info = await this.req(`https://public-api.tracker.gg/v2/apex/standard/profile/${options.platform}/${options.username}`);
+		const info = await this.req(`https://public-api.tracker.gg/v2/apex/standard/profile/${options.platform}/${options.user}`);
 		return info.data;
 	}
 	/**
      * It takes in a username and platform, and returns the stats of the user.
      * @async
-     * @param {String} username The username of the player
+     * @param {String} user The username of the player
     *  @param {String} platform The platform of the player retrieving stats from
      * @returns the info object from the response.
      */
@@ -65,7 +65,7 @@ export const TRN = class TRN {
 		if(!platforms.includes(options.platform)) {
 			exit(`[Statisfy] ERROR: Invalid platform provided. Options include ${platforms}`, "red");
 		}
-		const info = await this.req(`https://api.fortnitetracker.com/v1/profile/${options.platform}/${options.username}`);
+		const info = await this.req(`https://api.fortnitetracker.com/v1/profile/${options.platform}/${options.user}`);
 		return info;
 
 	}

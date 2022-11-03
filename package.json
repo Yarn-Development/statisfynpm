@@ -1,20 +1,21 @@
 {
   "name": "statisfy",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
-  "main": "./lib/index.js",
+  "main": "./lib/src/index.js",
   "bin": "./test/index.js",
   "scripts": {
-    "test": "node ./test/index.js",
+    "test": "node ./lib/test/index",
     "build": "node clear_lib.js && tsc",
     "format": "eslint ./src/ --fix",
     "docs": "typedoc --tsconfig ./tsconfig.json",
-    "alias": "node module_alias.js",
-    "start": "yarn run docs && yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test",
+    "alias": "node reg.js",
+    "start": "yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test",
     "prepare": "husky install"
   },
   "_moduleAliases": {
-    "#root": "./src"
+    "@root": "./src",
+    "@lib": "./lib/src"
   },
   "keywords": [
     "stats",

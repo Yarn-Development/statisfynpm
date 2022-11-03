@@ -87,7 +87,7 @@ export const Twitch = class Twitch {
 		if(username == null) {
 			exit("[Statisfy] ERROR: Username not provided.", "red");
 		}
-		const info = await this.req(`https://api.twitch.tv/helix/users?login=${username.toLowerCase()}`);
+		const info = await this.req(`https://api.twitch.tv/helix/users?login=${username}`);
 		return info[0];
 	}
 	/**
@@ -96,7 +96,7 @@ export const Twitch = class Twitch {
  * @param {String} id - The user's ID.
  * @returns An object with the user's information.
  */
-	async getUserByID(id: string) {
+	async getUserByID(id: string | void) {
 		const info = await this.req(`https://api.twitch.tv/helix/users?id=${id}`);
 		return info[0];
 	}
@@ -106,7 +106,7 @@ export const Twitch = class Twitch {
  * @param {String} id - The channel ID of the channel you want to get the info of.
  * @returns An object with the channel info.
  */
-	async getChannelInfo(id: string) {
+	async getChannelInfo(id: string | void) {
 		const info = await this.req(`https://api.twitch.tv/helix/channels?broadcaster_id=${id}`);
 		return info[0];
 	}
@@ -117,7 +117,7 @@ export const Twitch = class Twitch {
  * @param {String} username - The username of the channel you want to get the information of.
  * @returns An object with the channel information.
  */
-	async searchChannels(username: string) {
+	async searchChannels(username: string | void) {
 		const info = await this.req(`https://api.twitch.tv/helix/search/channels?query=${username}`);
 		return info[0];
 	}

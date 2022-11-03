@@ -3,6 +3,7 @@ import * as http from "http";
 import { exit } from "../utils.js";
 import { URLSearchParams } from "url";
 import { QuickDB } from "quick.db";
+import { resolve, join } from "path";
 interface SpotifyOptions {
 	clientID: string;
 	clientSecret: string;
@@ -23,15 +24,25 @@ interface SpotifyTokenResponse {
 	expires_in: number;
 	refresh_token: string;
 }
+interface DBOptions {
+	client_id: string;
+	client_secret: string;
+	oauth_token: {
+		access_token: string;
+		refresh_token: string;
+		expires_in: number;
+	}
+	expires_at: number;
+}
 interface top {
-	time: string;
-	type: string;
-	limit: number;
+	time: string | void;
+	type: string | void;
+	limit: string | number | void;
 }
 interface searchOptions {
 	query: string;
-	type: string;
-	limit: number;
+	type: string | void;
+	limit: number | void;
 }
 
 /**
@@ -44,9 +55,9 @@ export const Spotify = class Spotify {
 	id: string;
 	secret: string;
 	db: QuickDB;
-	oauth_token : Spot;
+	oauth_token : Promise<string> | string | object;
 	constructor(options: SpotifyOptions) {
-		const db = new QuickDB({ filePath:"../data/creds.sqlite" });
+		const db = new QuickDB({ filePath: join(resolve("./"), "src", "data", "creds.sqlite") });
 		const token_obj: Spot = {};
 		this.id = options.clientID;
 		this.secret = options.clientSecret;
@@ -55,18 +66,35 @@ export const Spotify = class Spotify {
 	}
 
 	async DatabaseManager() {
-		const instance: Spot | null = await this.db.get("instance");
+		const instance: Spot | null = await this.db.get(`instance_${this.id}_${this.secret}`);
 		if(instance) {
+			console.log(instance);
 			if(typeof instance == "object") {
-				this.oauth_token = instance;
+				if(instance.id == this.id && instance.secret == this.secret) {
+					if(instance.expires_at < Date.now()) {
+						const token = await this.refresh_token();
+						this.oauth_token = token;
+						await this.db.set("instance", {
+							id: this.id,
+							secret: this.secret,
+							oauth_token: token,
+							expires_at: Date.now() + 3600000,
+						});
+					}
+					this.oauth_token = instance.oauth_token.access_token;
+				}
+				else {
+					exit("[Statisfy] DatabaseManager: Instance Object failed to fetch.", "red");
+				}
 			}
 			else {
-				exit("[Statisfy] DatabaseManager: Instance Object failed to fetch.", "red");
+				exit("[Statisfy] ERROR: Database Manager failed to initialize.", "red");
 			}
 		}
 		else {
-			exit("[Statisfy] ERROR: Database Manager failed to initialize.", "red");
+			this.oauth_token = await this.oauth({ scopes:["user-top-read"], uri:"http://localhost:8888" });
 		}
+		return this.oauth_token;
 	}
 
 	/**
@@ -169,7 +197,7 @@ export const Spotify = class Spotify {
 		}).then (result => result.json());
 		const date = Date.now();
 		const expire_time = date + (body.expires_in * 1000);
-		await this.db.set("instance", { client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
+		await this.db.set(`instance_${this.id}_${this.secret}`, { client_id: this.id, client_secret:this.secret, oauth_token:body, expires_in:expire_time });
 		return body.access_token;
 	}
 	/**
@@ -201,9 +229,10 @@ export const Spotify = class Spotify {
 	 * @returns The access token.
 	 */
 	async refresh_token() {
+		const instance: DBOptions| null = await this.db.get(`instance_${this.id}_${this.secret}`);
 		const params = new URLSearchParams();
 		params.append("grant_type", "refresh_token");
-		params.append("refresh_token", this.oauth_token.refresh_token || "");
+		if(instance) params.append("refresh_token", instance.oauth_token.refresh_token || "");
 		const message = (Buffer.from(`${this.id}:${this.secret}`).toString("base64"));
 		const res = await fetch("https://accounts.spotify.com/api/token", {
 			method:"POST",
@@ -235,6 +264,8 @@ export const Spotify = class Spotify {
 
 	async top(options: top) {
 		const token = await this.DatabaseManager();
+		console.log(token);
+		console.log(this.oauth_token);
 		const res = await fetch(`https://api.spotify.com/v1/me/top/${options.type}?time_range=${options.time}&limit=${options.limit}&offset=0`, {
 			headers:{
 				"Authorization":`Bearer ${token}`,
@@ -268,9 +299,7 @@ export const Spotify = class Spotify {
 	 */
 	async search(options: searchOptions) {
 		const formattedQuery = options.query.replace(/ /g, "%20");
-		console.log(formattedQuery);
 		const token = await this.access_token();
-		console.log(token);
 		const res = await fetch(`https://api.spotify.com/v1/search?q=${formattedQuery}&type=${options.type}&limit=${options.limit}&market=GB`, {
 			headers:{
 				"Authorization":`Bearer ${token}`,
