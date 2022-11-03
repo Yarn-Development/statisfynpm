@@ -1,14 +1,29 @@
-name: Documentation GEN v2
+name: Documentation Generation
 on: [workflow_dispatch,push]
 jobs:
   build:
-    runs-on: windows-latest
-    name: Node sample
+    runs-on: ubuntu-latest
+    name: Automatically Generate Documentation
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'yarn'
-      - run: yarn install
-      - run: yarn run docs
+      - name: Install Dependencies
+        run: yarn install
+      - name: Generate Documentation via TypeDoc
+        run: yarn run docs
+      - name: Add CNAME
+        run: |
+          pwd
+          cd docs
+          pwd
+          touch CNAME
+          echo statisfy.js.org >> CNAME
+      - name: Commit Changes  
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: Generated Documentation for Statisfy Site
+
