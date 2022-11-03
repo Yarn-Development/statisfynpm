@@ -23,7 +23,7 @@ interface reqOptions {
  * @classdesc Class used to fetch cryptocurrency information from the CoinMarketCap API.
  * @param {CMCOptions} options Class Options (CoinMarketCap API Key)
  */
-export const CMC = class CMC {
+export class CMC {
 	key: string;
 	url: string;
 	constructor(options: CMCOptions) {
@@ -94,4 +94,4 @@ export const CMC = class CMC {
 		});
 		return info;
 	}
-};
+}

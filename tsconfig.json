@@ -16,7 +16,7 @@
             "@lib/*": ["lib/*"]
           },
           "typedocOptions": {
-            "entryPoints": ["./src"],
+            "entryPoints": ["src/classes/cmc.ts", "src/classes/spotify.ts", "src/classes/trn.ts", "src/classes/twitch.ts", "src/classes/twitter.ts", "src/classes/youtube.ts", "src/functions/npm.ts", "src/functions/utils.ts"],
             "out": "docs"
         }
 }

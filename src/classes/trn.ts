@@ -10,7 +10,7 @@ interface GameOptions {
  * @classdesc Handler for game statistics supplied via the Tracker Network API.
  * @param {String} key Tracker Network Key to authenticate API Requests
  */
-export const TRN = class TRN {
+export class TRN {
 	key: string;
 	constructor(key: string) {
 		this.key = key;
@@ -69,4 +69,4 @@ export const TRN = class TRN {
 		return info;
 
 	}
-};
+}

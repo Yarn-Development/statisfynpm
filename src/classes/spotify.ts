@@ -51,7 +51,7 @@ interface searchOptions {
  * @param {String} clientID Spotify client ID
  * @param {String} clientSecret Spotify client secret
  */
-export const Spotify = class Spotify {
+export class Spotify {
 	id: string;
 	secret: string;
 	db: QuickDB;
@@ -313,4 +313,4 @@ export const Spotify = class Spotify {
 			exit(`[Statisfy] ${body.status} ERROR: ${body.error} -  ${body.message}`, "red");
 		}
 	}
-};
+}

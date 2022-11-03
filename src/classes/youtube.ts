@@ -15,7 +15,7 @@ interface searchOptions {
 	limit: number;
 }
 
-export const YouTube = class YouTube {
+export class YouTube {
 	key: string;
 	url: string;
 	constructor(options: YouTubeOptions) {
@@ -99,5 +99,5 @@ export const YouTube = class YouTube {
 		});
 		return info.items[0];
 	}
-};
+}
 

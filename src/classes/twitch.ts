@@ -10,7 +10,7 @@ interface TwitchOptions {
  * @param {String} client_id Twitch Client ID from Developer Portal
  * @param {String} client_secret Twitch Client Secret from Developer Portal
  */
-export const Twitch = class Twitch {
+export class Twitch {
 	client: string;
 	secret: string;
 
@@ -121,4 +121,4 @@ export const Twitch = class Twitch {
 		const info = await this.req(`https://api.twitch.tv/helix/search/channels?query=${username}`);
 		return info[0];
 	}
-};
+}
