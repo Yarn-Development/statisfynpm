@@ -7,8 +7,7 @@
             "outDir": "./lib",
             "skipLibCheck": true,
             "strict": true,
-            "resolveJsonModule": true,
-            "esModuleInterop": true
+            "resolveJsonModule": true
           },
           "exclude": ["node_modules/", "lib/" ],
           "paths": {
@@ -16,7 +15,7 @@
             "@lib/*": ["lib/*"]
           },
           "typedocOptions": {
-            "entryPoints": ["src/classes/cmc.ts", "src/classes/spotify.ts", "src/classes/trn.ts", "src/classes/twitch.ts", "src/classes/twitter.ts", "src/classes/youtube.ts", "src/functions/npm.ts", "src/functions/utils.ts"],
+            "entryPoints": ["src/"],
             "out": "docs"
         }
 }
