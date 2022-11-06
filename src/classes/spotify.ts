@@ -42,7 +42,7 @@ interface top {
 interface searchOptions {
 	query: string;
 	type: string | void;
-	limit: number | void;
+	limit?: number | void;
 }
 
 /**
@@ -68,9 +68,8 @@ export class Spotify {
 	async DatabaseManager() {
 		const instance: Spot | null = await this.db.get(`instance_${this.id}_${this.secret}`);
 		if(instance) {
-			console.log(instance);
 			if(typeof instance == "object") {
-				if(instance.id == this.id && instance.secret == this.secret) {
+				if(instance.client_id === this.id && instance.client_secret === this.secret) {
 					if(instance.expires_at < Date.now()) {
 						const token = await this.refresh_token();
 						this.oauth_token = token;
@@ -134,8 +133,16 @@ export class Spotify {
      * It creates a server on the given port, and returns a promise that resolves to the url that the
      * server receives a request on.
      * @async
+	 * @example
+	 * ```ts
+	 * const spotify = new Spotify({
+	 * 	clientID: "clientID",
+	 * 	clientSecret: "clientSecret",
+	 * });
+	 * const token = await spotify.oauth({ scopes:["user-top-read"], uri:"http://localhost:8888" });
+	 * ```
      * @param {Integer} port - The port number to listen on.
-     * @returns A promise that resolves to a string.
+     * @returns {Promise} A promise that resolves to the url that the server receives a request on, and an access token once the user has authenticated.
      */
 		if(!options.scopes) {
 			exit("[Statisfy] Please provide a scope for the OAuth2.0 process.", "red");
@@ -256,16 +263,57 @@ export class Spotify {
 	/**
  * It gets the top tracks/artists from the user's account
  * @async
+ * @example
+ * ```ts
+ * const spotify = new Spotify({
+ * 	 clientID: "clientID",
+ *	 clientSecret: "clientSecret",
+ * });
+ * const topTracks = await spotify.top({ type: "tracks", limit: 10, time: "short_term" });
+ * console.log(topTracks);
+ * ```
  * @param {String} time Period of time to fetch top stats for: short_term(4 weeks), medium_term(6 months) or long_term(lifetime)
  * @param {String} type Type of Data fetched: Either artists or tracks
  * @param {Integer} limit Amount of top artists/tracks to be fetched
  * @returns An array of objects.
+ * @returns {string} album.album_type The type of the album: one of "album", "single", or "compilation".
+ * @returns {string} album.artists The artists of the album. Each artist object includes a link in href to more detailed information about the artist.
+ * @returns {string} album.available_markets The markets in which the album is available: ISO 3166-1 alpha-2 country codes. Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
+ * @returns {string} album.external_urls Known external URLs for this album.
+ * @returns {string} album.href A link to the Web API endpoint providing full details of the album.
+ * @returns {string} album.id The Spotify ID for the album.
+ * @returns {string} album.images The cover art for the album in various sizes, widest first.
+ * @returns {string} album.name The name of the album. In case of an album takedown, the value may be an empty string.
+ * @returns {string} album.release_date The date the album was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12".
+ * @returns {string} album.release_date_precision The precision with which release_date value is known: "year", "month", or "day".
+ * @returns {string} album.total_tracks The total number of tracks in the album.
+ * @returns {string} album.type The object type: "album"
+ * @returns {string} album.uri The Spotify URI for the album.
+ * @returns {string} artists The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist.
+ * @returns {string} available_markets The markets in which the track is available: ISO 3166-1 alpha-2 country codes. Note that an album is considered available in a market when at least 1 of its tracks is available in that market.
+ * @returns {string} disc_number The disc number (usually 1 unless the album consists of more than one disc).
+ * @returns {string} duration_ms The track length in milliseconds.
+ * @returns {string} explicit Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
+ * @returns {string} external_ids Known external IDs for the track.
+ * @returns {string} external_urls Known external URLs for this track.
+ * @returns {string} href A link to the Web API endpoint providing full details of the track.
+ * @returns {string} id The Spotify ID for the track.
+ * @returns {string} is_local Whether or not the track is from a local file.
+ * @returns {string} name The name of the track.
+ * @returns {string} popularity The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.
+ * @returns {string} preview_url A link to a 30 second preview (MP3 format) of the track. Can be null.
+ * @returns {string} track_number The number of the track. If an album has several discs, the track number is the number on the specified disc.
+ * @returns {string} type The object type: "track".
+ * @returns {string} uri The Spotify URI for the track.
+ * @throws {Error} If the type is not tracks or artists.
+ * @throws {Error} If the time is not short_term, medium_term or long_term.
+ * @throws {Error} If the limit is not between 1 and 50.
+ * @throws {Error} If the user is not logged in.
+ * @throws {Error} If the user has no top tracks/artists.
  */
 
 	async top(options: top) {
 		const token = await this.DatabaseManager();
-		console.log(token);
-		console.log(this.oauth_token);
 		const res = await fetch(`https://api.spotify.com/v1/me/top/${options.type}?time_range=${options.time}&limit=${options.limit}&offset=0`, {
 			headers:{
 				"Authorization":`Bearer ${token}`,
@@ -292,12 +340,31 @@ export class Spotify {
 	/**
 	 * It searches for a song, artist, album, or playlist
 	 * @async
+	 * @example
+	 * ```ts
+	 * const spotify = new Spotify({
+	 * 	 clientID: "clientID",
+	 * 	 clientSecret: "clientSecret",
+	 * });
+	 * const search = await spotify.search({ query: "Never Gonna Give You Up", type: "track", limit: 10 });
+	 * console.log(search);
+	 * ```
 	 * @param {String} query - The query you want to search for.
 	 * @param {String} type - The type of data you want to search for.
-	 * @param {Integer} limit - The amount of results you want to get.
+	 * @param {Integer} limit - The amount of results you want to get. (Default: 5)
 	 * @returns The search function returns the body of the response.
+	 * @returns {string} tracks.href A link to the Web API endpoint returning the full result of the request.
+	 * @returns {string} tracks.items The requested data.
+	 * @returns {string} tracks.limit The maximum number of items in the response (as set in the query or by default).
+	 * @returns {string} tracks.next URL to the next page of items. (null if none)
+	 * @returns {string} tracks.offset The offset of the items returned (as set in the query or by default).
+	 * @returns {string} tracks.previous URL to the previous set of items (null if none)
+	 * @returns {string} tracks.total Total
+	 * @throws {Error} If the type is not track, artist, album or playlist.
+	 * @throws {Error} If the limit is not between 1 and 50.
 	 */
 	async search(options: searchOptions) {
+		if(!options.limit) options.limit = 5;
 		const formattedQuery = options.query.replace(/ /g, "%20");
 		const token = await this.access_token();
 		const res = await fetch(`https://api.spotify.com/v1/search?q=${formattedQuery}&type=${options.type}&limit=${options.limit}&market=GB`, {

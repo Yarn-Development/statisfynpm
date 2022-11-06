@@ -1,4 +1,4 @@
-import { npm, Twitch, Twitter, TRN, Spotify, YouTube } from "../src/index";
+import { npm, Twitch, Twitter, TRN, Spotify, YouTube, CMC } from "../src/index";
 import * as config from "../src/config.json";
 
 const ttv = new Twitch({
@@ -16,6 +16,9 @@ const spotify = new Spotify({
 const yt = new YouTube({
 	key:config.youtube,
 });
+const cmc = new CMC({
+	key: config.cmc,
+});
 import { createInterface } from "readline";
 const rl = createInterface({
 	input: process.stdin,
@@ -30,7 +33,7 @@ const question = promisify(rl.question).bind(rl);
 
 async function main() {
 	try {
-		const opt = await question("Select Statisfy Option:\n[01]: Twitch\n[02]: Twitter\n[03]: TRN\n[04]: Spotify\n[05]: NPM\n[06]: YouTube\nChoice: ");
+		const opt = await question("Select Statisfy Option:\n[01]: Twitch\n[02]: Twitter\n[03]: TRN\n[04]: Spotify\n[05]: NPM\n[06]: YouTube\n[07]: CoinMarketCap\nChoice: ");
 		if((typeof opt === "string") && (opt === "1" || opt === "01")) {
 			try {
 				const username: string | void = await question("Enter Twitch Username: ").catch(err => console.error(err));
@@ -195,7 +198,6 @@ async function main() {
 					else if((typeof type === "string") && (type === "3" || type === "03")) {
 						type = "album";
 					}
-					console.log(await spotify.top({ time:"short_term", limit:1, type:"tracks" }));
 					if(typeof search === "string") console.log(await spotify.search({ query:search, type:type, limit:5 }));
 				}
 			}
@@ -220,6 +222,35 @@ async function main() {
 					const limit = await question("Enter Amount of Results to Return: ");
 					if (typeof search === "string" && typeof limit === "string") console.log(await yt.search({ query:search, limit:parseInt(limit) }));
 					if (typeof search === "string")console.log(await yt.getVideoByQuery(search));
+				}
+			}
+			catch(err) {
+				console.log(err);
+			}
+		}
+		else if((typeof opt === "string") && (opt === "7" || opt === "07")) {
+			try {
+				const type = await question("Enter identifier type:\n[01]: ID\n[02]: Slug\n[03]: Symbol\nChoice: ");
+				if((typeof type === "string") && (type === "1" || type === "01")) {
+					const id = await question("Enter ID of Coin to fetch:  ");
+					if(typeof id === "string") {
+						const info = await cmc.getQuotesById(id);
+						console.log(info, info.data["1"].quote);
+					}
+				}
+				else if((typeof type === "string") && (type === "2" || type === "02")) {
+					const slug = await question("Enter Slug of Coin to fetch:  ");
+					if(typeof slug === "string") {
+						const info = await cmc.getQuotesBySlug(slug);
+						console.log(info, info.data["1"].quote);
+					}
+				}
+				else if((typeof type === "string") && (type === "3" || type === "03")) {
+					const symbol = await question("Enter Symbol of Coin to fetch:  ");
+					if(typeof symbol === "string") {
+						const info = await cmc.getQuotesBySymbol(symbol);
+						console.log(info, info.data["1"].quote);
+					}
 				}
 			}
 			catch(err) {
