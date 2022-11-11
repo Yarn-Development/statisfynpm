@@ -10,7 +10,7 @@
     "test": "node ./lib/test/index.js",
     "build": "node clear_lib.js && tsc",
     "format": "eslint ./src/ --fix",
-    "docs": "typedoc --tsconfig ./tsconfig.json ",
+    "docs": "typedoc --tsconfig ./tsconfig.json --exclude **/test/index.ts ",
     "alias": "node module_alias.js",
     "start": "yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test",
     "prepare": "husky install"
