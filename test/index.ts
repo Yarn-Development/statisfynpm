@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { npm, Twitch, Twitter, TRN, Spotify, YouTube, CMC } from "../src/index";
 import * as config from "../src/config.json";
 
@@ -26,10 +27,7 @@ const rl = createInterface({
 });
 import { promisify } from "util";
 const question = promisify(rl.question).bind(rl);
-// const question = (questionText: string) => {
-// 	return new Promise<string>((resolve) => rl.question(questionText, resolve))
-// 		.finally(() => rl.close());
-// };
+
 
 async function main() {
 	try {

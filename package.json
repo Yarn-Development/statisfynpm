@@ -3,7 +3,9 @@
   "version": "1.2.2",
   "description": "Get statistics from all of your favourite social media sites, games and more!",
   "main": "./lib/index.js",
-  "bin": "./test/index.js",
+  "bin":{
+    "statisfy": "./lib/test/index.js"
+  },
   "scripts": {
     "test": "node ./lib/test/index.js",
     "build": "node clear_lib.js && tsc",

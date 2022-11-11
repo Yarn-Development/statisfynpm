@@ -16,6 +16,7 @@
           },
           "typedocOptions": {
             "entryPoints": ["src/"],
-            "out": "docs"
+            "out": "docs",
+            "exclude": ["**/node_modules/**", "**/lib/**", "**/test/**"],
         }
 }
