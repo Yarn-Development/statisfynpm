@@ -16,7 +16,7 @@ jobs:
         run: |
           cd src
           touch config.json
-          echo "{"client_id":"vz3ooil6ed4n6xn799s7h51krwy9cu","secret":"9qtpx8pwpclxz1x42sgljctar63j0u","trnkey":"281b7ca0-27c2-406e-9dd7-de00dd7d7b0d","twitter":"AAAAAAAAAAAAAAAAAAAAALkuTAEAAAAA%2FwkO6HB12gZ0NG9g2WE7JZYzxTg%3Dsm00iMNiRAG81Iz2Pga4g2kycZBDPNgujq8K1RxvuUzuKaCgIJ","spotifyCID":"4f83f09f42204f44bfc2fc097cab5263","mongoURI":"mongodb+srv://buh:buhie@cluster0.adekj.mongodb.net/?retryWrites=true&w=majority","spotifyCS":"94c66e3182aa414e9907ac5ba53b062d","youtube":"AIzaSyD7CYOUveP5CRB6bQ56hAsZkg_u1VsxSbI","cmc":"2ea14dec-4e89-409a-8f16-585d42ed3f63"}" >> config.json
+          echo '{"client_id":"vz3ooil6ed4n6xn799s7h51krwy9cu","secret":"9qtpx8pwpclxz1x42sgljctar63j0u","trnkey":"281b7ca0-27c2-406e-9dd7-de00dd7d7b0d","twitter":"AAAAAAAAAAAAAAAAAAAAALkuTAEAAAAA%2FwkO6HB12gZ0NG9g2WE7JZYzxTg%3Dsm00iMNiRAG81Iz2Pga4g2kycZBDPNgujq8K1RxvuUzuKaCgIJ","spotifyCID":"4f83f09f42204f44bfc2fc097cab5263","mongoURI":"mongodb+srv://buh:buhie@cluster0.adekj.mongodb.net/?retryWrites=true&w=majority","spotifyCS":"94c66e3182aa414e9907ac5ba53b062d","youtube":"AIzaSyD7CYOUveP5CRB6bQ56hAsZkg_u1VsxSbI","cmc":"2ea14dec-4e89-409a-8f16-585d42ed3f63" }' >> config.json
           echo "Successfully created Config File"
       - name: Generate Documentation via TypeDoc
         run: yarn run docs
