@@ -22,11 +22,11 @@ jobs:
         run: yarn run docs
       - name: Add CNAME
         run: |
-          cd
+          pwd
           cd src
           unlink config.json
           echo "Config Removed."
-          cd
+          cd -
           pwd
           cd docs
           pwd
@@ -37,4 +37,3 @@ jobs:
         with:
           default_author: github_actions
           message: Generated Documentation for Statisfy Site
-
