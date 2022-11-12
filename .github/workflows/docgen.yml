@@ -22,6 +22,11 @@ jobs:
         run: yarn run docs
       - name: Add CNAME
         run: |
+          cd
+          cd src
+          unlink config.json
+          echo "Config Removed."
+          cd
           pwd
           cd docs
           pwd
