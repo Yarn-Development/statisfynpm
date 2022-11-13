@@ -3,7 +3,7 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/min/statisfy?logo=npm)
 ![npms.io (quality)](https://img.shields.io/npms-io/quality-score/statisfy?logo=npm)
 ![npms.io (quality)](https://img.shields.io/npms-io/maintenance-score/statisfy?logo=npm)
-
+![npm](https://img.shields.io/npm/dt/statisfy?logo=npm)
 &nbsp;
 ## Get statistics from all of your favourite social media sites, games and more!
 ## Documentation: [https://statisfy.js.org](https://statisfy.js.org)

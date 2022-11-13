@@ -1,3 +1,5 @@
+import { existsSync } from "fs";
+import { join }from "path";
 /**
  * It takes a string as an argument, and returns the same string wrapped in ANSI escape codes that make
  * the string yellow
@@ -31,4 +33,12 @@ export function exit(message:string, color?:string | "red") {
 	}
 
 	process.exit(1);
+}
+
+export function getAppRootDir() {
+	let currentDir = __dirname;
+	while(!existsSync(join(currentDir, "package.json"))) {
+		currentDir = join(currentDir, "..");
+	}
+	return currentDir;
 }

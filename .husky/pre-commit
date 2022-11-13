@@ -3,3 +3,5 @@
 yarn run format
 git add -A -v
 echo "[Statisfy] Pre-COMMIT HOOK: Linting and formatting..."
+yarn run build
+echo "[Statisfy] Pre-COMMIT HOOK: Build successful!"

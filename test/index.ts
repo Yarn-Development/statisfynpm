@@ -53,10 +53,10 @@ async function main() {
 		}
 		else if((typeof opt === "string") && (opt === "3" || opt === "03")) {
 			try {
-				const game: string | void = await question("Select Game:\n[01]: Fortnite\n[02]: Apex Legends");
+				const game: string | void = await question("Select Game:\n[01]: Fortnite\n[02]: Apex Legends\nChoice: ");
 				if((typeof game === "string") && (game === "1" || game === "01")) {
 					try{
-						const platform: string | void = await question("Select Platform:\n[01]: PC\n[02]: Console\n[03]:Mobile");
+						const platform: string | void = await question("Select Platform:\n[01]: PC\n[02]: Console\n[03]:Mobile\nChoice: ");
 						if((typeof platform === "string") && (platform === "1" || platform === "01")) {
 							try {
 								const user: string | void = await question("Enter Epic Games Username: ");
@@ -94,7 +94,7 @@ async function main() {
 				}
 				else if ((typeof game === "string") && (game === "2" || game === "02")) {
 					try {
-						const platform: string | void = await question("Select Platform:\n[01]: PC\n[02]: PSN\n[03]: Xbox");
+						const platform: string | void = await question("Select Platform:\n[01]: PC\n[02]: PSN\n[03]: Xbox\nChoice: ");
 						if((typeof platform === "string") && (platform === "1" || platform === "01")) {
 							try {
 								const user = await question("Enter Origin Username: ");
@@ -146,8 +146,8 @@ async function main() {
 					if(typeof playlist === "string") console.log(await spotify.getPlaylist(playlist));
 				}
 				else if((typeof prompt === "string") && (prompt === "2" || prompt === "02")) {
-					let time: string | void = await question("Enter Time Range:\n[01]: Short Term\n[02]: Medium Term\n[03]: Long Term");
-					let limit : string | void = await question("Enter Limit:\n[01]: 1\n[02]: 5\n[03]: 10\n[04]: 15\n[05]: 25\n[06]: 50");
+					let time: string | void = await question("Enter Time Range:\n[01]: Short Term\n[02]: Medium Term\n[03]: Long Term\nChoice: ");
+					let limit : string | void = await question("Enter Limit:\n[01]: 1\n[02]: 5\n[03]: 10\n[04]: 15\n[05]: 25\n[06]: 50\nChoice: ");
 					let type: string | void = await question("Enter Type:\n[01]: Tracks\n[02]: Artists");
 					if((typeof time === "string") && (time === "1" || time === "01")) {
 						time = "short_term";

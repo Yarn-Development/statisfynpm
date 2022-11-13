@@ -4,7 +4,7 @@ lib/
 .vscode/
 module_alias.js
 src/classes/tiktok.js
-src/data/creds.sqlite
+data/creds.sqlite
 clear_lib.js
 reg.js
 yarn-error.log

@@ -3,7 +3,8 @@ import * as http from "http";
 import { exit } from "../utils.js";
 import { URLSearchParams } from "url";
 import { QuickDB } from "quick.db";
-import { resolve, join } from "path";
+import { getAppRootDir } from "../utils.js";
+import { join } from "path";
 interface SpotifyOptions {
 	clientID: string;
 	clientSecret: string;
@@ -57,7 +58,7 @@ export class Spotify {
 	db: QuickDB;
 	oauth_token : Promise<string> | string | object;
 	constructor(options: SpotifyOptions) {
-		const db = new QuickDB({ filePath: join(resolve("./"), "src", "data", "creds.sqlite") });
+		const db = new QuickDB({ filePath: join(getAppRootDir(), "data", "creds.sqlite") });
 		const token_obj: Spot = {};
 		this.id = options.clientID;
 		this.secret = options.clientSecret;
@@ -172,7 +173,7 @@ export class Spotify {
 		const spotifyUrl =
         "https://accounts.spotify.com/authorize?" +
         new URLSearchParams({ response_type: "code", show_dialog: "true",	state, client_id: this.id, redirect_uri: options.uri, scope: options.scopes[0] }).toString();
-		console.info("You appear to be using Statisfy for the first time.\nPlease click the link to login to Spotify in the browser. You will not have to do this again.\n");
+		console.info("You appear to be using Spotify for Statisfy for the first time.\nPlease click the link to login to Spotify in the browser. You will not have to do this again.\n");
 		console.info(spotifyUrl + "\n");
 		const portURL: number = parseInt(new URL(options.uri).port) || 8888;
 		const authUrl = await getLocalhostUrl(portURL);
