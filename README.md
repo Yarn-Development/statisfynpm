@@ -34,8 +34,8 @@ $ statisfy
 &nbsp;
 ## Problems or issues?
 
-If you encounter any problems, bugs or other issues with the package, please create an [issue in the GitHub repo](https://github.com/aspekts/statisfynpm/issues). 
+If you encounter any problems, bugs or other issues with the package, please create an [issue in the GitHub repo](https://github.com/Yarn-Development/statisfynpm/issues). 
 
 &nbsp;
 ## Contact
-If you have any questions or just want to reach me, you can get in touch with me on my [Discord server](https://discord.gg/GxGTHBC).
+If you have any questions or just want to reach us, you can get in touch with me on our [Discord server](https://discord.gg/GxGTHBC).
