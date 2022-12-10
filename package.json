@@ -11,12 +11,8 @@
     "build": "node clear_lib.js && tsc",
     "format": "eslint ./src/ --fix",
     "docs": "typedoc --tsconfig ./tsconfig.json",
-    "alias": "node module_alias.js",
-    "start": "yarn build && yarn link && yarn link statisfy && yarn run alias && yarn run test",
+    "start": "yarn build && yarn link && yarn link statisfy && yarn run test",
     "prepare": "husky install"
-  },
-  "_moduleAliases": {
-    "#root": "./src"
   },
   "keywords": [
     "stats",
@@ -32,14 +28,14 @@
   },
   "homepage": "https://statisfy.js.org",
   "dependencies": {
-    "better-sqlite3": "^7.6.2",
+    "better-sqlite3": "^8.0.1",
     "node-fetch": "^2.6.7",
     "quick.db": "^9.0.6",
     "typedoc": "^0.23.19"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.2",
-    "@types/node": "^18.8.3",
+    "@types/better-sqlite3": "^7.6.3",
+    "@types/node": "^18.11.12",
     "@types/node-fetch": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",

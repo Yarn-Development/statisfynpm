@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { npm, Twitch, Twitter, TRN, Spotify, YouTube, CMC } from "../src/index";
+import { npm, Twitch, Twitter, TRN, Spotify, YouTube, CMC, instagram } from "../src/index";
 import * as config from "../src/config.json";
 
 const ttv = new Twitch({
@@ -31,7 +31,7 @@ const question = promisify(rl.question).bind(rl);
 
 async function main() {
 	try {
-		const opt = await question("Select Statisfy Option:\n[01]: Twitch\n[02]: Twitter\n[03]: TRN\n[04]: Spotify\n[05]: NPM\n[06]: YouTube\n[07]: CoinMarketCap\nChoice: ");
+		const opt = await question("Select Statisfy Option:\n[01]: Twitch\n[02]: Twitter\n[03]: TRN\n[04]: Spotify\n[05]: NPM\n[06]: YouTube\n[07]: CoinMarketCap\n[08]: Instagram\nChoice: ");
 		if((typeof opt === "string") && (opt === "1" || opt === "01")) {
 			try {
 				const username: string | void = await question("Enter Twitch Username: ").catch(err => console.error(err));
@@ -250,6 +250,15 @@ async function main() {
 						console.log(info, info.data["1"].quote);
 					}
 				}
+			}
+			catch(err) {
+				console.log(err);
+			}
+		}
+		else if((typeof opt === "string") && (opt === "8" || opt === "08")) {
+			try {
+				const username = await question("Enter Instagram Username: ");
+				if(typeof username === "string") console.log(await instagram(username));
 			}
 			catch(err) {
 				console.log(err);
